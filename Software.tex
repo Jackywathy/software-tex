@@ -1,0 +1,773 @@
+\documentclass[oneside,openany,11pt,a4paper]{report}
+\title{LAMP - Major Project 2018}
+\date{August\\ 2018}
+\author{Waxy Laser Solutions}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{wrapfig}
+\setlength{\headheight}{62pt}
+
+\lhead{L.A.M.P \\ Waxy LASER Solutions \\ Max Wharton-Jones, Shourov Quazi, Jack Jiang}
+\rhead{
+\includegraphics[width=2cm]{lamp.png}
+}
+%\pagestyle{fancy}
+
+
+\newenvironment{qanda}{\setlength{\parindent}{0pt}}{\bigskip}
+\newcommand{\Q}{\bigskip\bfseries Q: }
+\newcommand{\A}{\par\textbf{A:} \normalfont}
+
+\let\origdoublepage\cleardoublepage
+\newcommand{\clearemptydoublepage}{%
+	\clearpage
+	{\pagestyle{empty}\origdoublepage}%
+}
+
+\let\cleardoublepage\clearemptydoublepage
+
+
+\begin{document}
+
+	\begin{titlepage}
+	\makeatletter
+		\centering
+		\vfill
+		\vfill
+		\vfill
+		\vfill
+		\vfill
+		{\bfseries\Huge
+				\@title \\
+		}
+			
+			\vfill{
+			\bfseries\huge \@author \\ \normalfont\huge Max Wharton-Jones, Shourov Quazi, Jack Jiang
+		}
+	\vfill{
+			\huge{\@date}}
+
+	
+		
+		\vfill
+		\fbox{\includegraphics[width=12cm]{title.png} }% also works with logo.pdf
+		\vfill
+		\vfill
+		
+			\makeatother
+	\end{titlepage}
+
+	\pagenumbering{gobble}
+	
+	\newpage
+	\tableofcontents
+	
+	
+	\pagenumbering{arabic}
+
+	
+
+\chapter{Defining the Problem}
+\section[Client Details]{Client Details\protect\footnote{Client Details by Jack}}
+\subsection{Clients}
+Sydney Boys High School is an academically selective high school conducted by the NSW Department of Education.
+The school is led by the senior executive team, comprising the Principal, Dr Kim Jaggar, and Deputy Principals Ms Rachel Powell and Mr Robert Dowdell. The executive staff of nine Head Teachers and the twelve School Administration Officers led by Senior Administrative Manager Ms Sharon Kearns, support the senior executive. The school has three main offices - in the Main Building, in the Ken Andrews Library and in McDonald Wing. Finance, purchasing, enrolment and general inquiries are handled in the main building. Secretarial and network services are the responsibility of the McDonald Wing office.
+The clients for this project will be Ms Dam, Mr Comben and Dr Jaggar. Ms Dam and Mr Comben moderate the use of the laser cutter machine and are both teachers in the Industrial Arts department with Ms Dam being the head teacher. They are seeking a better system regarding the use of the laser cutter, especially with cutting trophies for their respective sports. Dr Jaggar is the principal of SBHS, who will be financing the project. Additional users include all other staff at SBHS and all current students of SBHS, however only Staff that are MIC of sports and other extracurricular activities will have access to the creation of trophies. Other staff and students will have access to the template creator only.
+\subsection{Current System}
+In the current system, all laser cutting requests are handled by the IA staff over email or in person. Individuals send their design files into to the IA staff or go in person to cut their objects with supervision. Only limited number of students and teachers have access to the system, and each job must be signed off by someone from the IA staff. 
+Before laser cutting, the file must be checked manually by staff to ensure for correctness, and an often trial-and-error approach is used to ensure the correct settings are applied to each line type. Material is then aligned in the laser cutter, and the piece is cut, a process that can take between 5 minutes to several hours, depending on the complexity and size of the job. Only one job can be cut at once. There is no tracking of jobs, relying on email and paper to track jobs in progress and in queue. Currently, they use a program to help generate one type of template, the school trophy, although this program lacks several features, explored in the interview.
+\section[Client Needs Research]{Client Needs Research\protect\footnote{Interview by Shourov}}
+\subsection{Interview}
+\subsubsection{\textit{Interview with Mr Comben (MIC, IA Teacher)}}
+\begin{qanda}
+\Q How many physical Awards are given out each year
+\A The number varies through the years, but for rifle shooting in particular, there are mainly perpetual awards. For these, we would be looking for brass laser cut plaques.
+
+\Q How much area in the budget is there for extra trophies?
+\A Keeping in mind of the cost factor, including the cost for a teacher to operate the laser cutter, as well as the material, there is most likely not that much money available for many of the sports. I know rifle shooting has no area in the budget for extra trophies.
+
+\Q How can we make the laser cutting process more efficient?
+\A Look for vector-based fonts, this would allow faster cutting. You want faster cutting speeds to minimise the time spent waiting at the cutter. Also, try to make a reference-based system, this way the amount of time spent setting up the cutting process.
+
+\Q What would be some improvements from the previous system that you would recommend?
+\A The old system was very good, although due to the time constraint had many flaws. I would recommend an easier GUI. The old GUI was hard to navigate, and I believe there were some areas that were not functional. Also, the system of setting up the laser cutter took up a large bulk of time. If you can find a way to align the cutter easier, that would be good. Also, the workflow from AutoCAD is very unreliable, I would recommend exporting in illustrator
+
+\Q What were some advantages in terms of resources from the previous system?
+\A I can’t say for sure about the budgetary resources saved, but I can say for sure that in the long term, the money saved would easily pay off the laser cutter. Also, the program has inspired a great deal of the industrial tech classes, we now have year 8’s playing around with the potential of the cutter which is great.
+
+\Q Do you have anything you want to see from our program?
+\A I would like to see a function that would allow the user to nominate a folder of files that are ready to laser cut, and give the user detailed feedback on the user. Such as, this user has 90\% black line in his work, and would take a long time to finish. This would allow us to check the jobs, and let it be easier to pass works.
+\end{qanda}
+
+\subsubsection{\textit{Interview with Ms Dam. (MIC, Supervisor, Head of Industrial Arts)}}
+\begin{qanda}
+\Q What are the costings of using the laser cutter in reference to the program used last year to create the trophies?
+\A Last year, the trophies printed was a great success, especially considering the fact that it was the first year to use the laser cutter. The cost was of course the cost of the trophies from its original source. The profit came from the comparison of the cost of a teacher to be printing and the cost of printing the trophies elsewhere. The cost of a teacher is around \$400 a day whereas each trophy would cost \$10 elsewhere. Hence, if we could print 40 trophies a day, we would be making a profit, which we easily reached.
+
+\Q What would you want to see from our program?
+\A From your program I’d like to see it be a lot less time consuming. I would like to spend less time setting up the cutter and more time watching it cut. This would be done as Mr Comben said, to use a reference point system. Also, I would like to see a cleaner GUI.
+\end{qanda}
+
+\subsubsection{Needs}
+
+\begin{tabular}{|p{5cm}|p{10cm}|}
+	
+   \hline
+   \rowcolor{gray!50}
+   \textbf{Needs} & \textbf{Objectives} \\[10pt]
+   
+   Must store $>50$ different records & 
+	\begin{itemize}
+		\itemsep0em
+   	\item Store $>50$ different templates in a database
+	\item Store $>50$ users, clients 
+	\item Store fonts and different shapes 
+	
+	\end{itemize} \\ \hline
+	
+	An editor to create templates & A drag and drop interface supporting
+	\begin{itemize}
+		\itemsep0em
+		\item text with different fonts
+		\item circles
+		\item rectangles
+		\item lines
+	\end{itemize} \\ \hline
+
+	
+	Use a variety of different materials & Program must indicate the material and settings to use on the laser cutter OR setting these values automatically before a job. \\ \hline
+	
+	Be cost effective (manpower, trophy cost) & The program must be efficient in the usage and process of its materials. For example, when engraving school trophies for Sydney Boys High School.\newline
+
+	Assuming that: 
+	\begin{itemize}
+		\itemsep0em
+		\item Each trophy laser cut saves \$10
+		\item A working day is 5 hours long.
+		\item The cost of a Teacher is \$400 a day
+	\end{itemize} 
+	Then, the program must be optimised such at LEAST 8 trophies can be cut per hour.\\ \hline
+	
+	
+  Minimum Manual work to save time &  Program must assist the user in aligning the job in the laser cutter. Previously this was done manually with callipers. \\ \hline
+  
+    Improvement on printing capabilities of the last product & To increase efficiency of the cutter: 
+  \begin{itemize}
+  	\itemsep0em
+  	\item Reduce Raster lines
+  	\item Increase Vector Lines
+  	\item No double lines
+  	\item Vector-based fonts
+  \end{itemize} \\ \hline
+
+\end{tabular}
+
+\begin{tabular}{|p{5cm}|p{10cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Needs} & \textbf{Objectives} \\[10pt]
+
+
+  Improved GUI usability & Current GUI has many issues, that must be rectified in the solution
+\begin{itemize}
+	\itemsep0em
+	\item Hard to navigate
+	\item Limited Usage
+	\item No tutorial
+	\item Some functions don't work like keybindings
+	\item Hard to line up
+\end{itemize} 
+	\begin{center} \includegraphics[width=4cm]{examplegui.png}
+	\end{center}
+
+ \\ \hline
+ 
+  Export/Import to Illustrator and Autocad & Ability to export/import files compatible with illustrator Illustrator
+  AND/OR AutoCAD or other popular cad programs
+	 \\ \hline
+	 
+	 
+	 Check Illustrator files for efficiency & A process that reads in an Illustrator file and
+	 \begin{itemize}
+	 	\itemsep0em
+	 	\item Reads all linetypes in the file
+	 	\item Compiles linetypes in numerical data
+	 	\item Quantitatively assesses linetype data
+	 	\item Provides estimate on print time
+	 	\item Displays linetype data in readable format
+	 \end{itemize} \\ \hline
+ 
+\end{tabular}
+
+\begin{tabular}{|p{5cm}|p{10cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Needs} & \textbf{Objectives} \\[10pt]
+Ability to search and sort templates  & Ability to attach a number of tags to each template, which can be filtered by the user
+	\begin{itemize}
+		\itemsep0em
+		\item Template name
+		\item Template creator
+		\item Date created/Approved
+		\item Item ID
+		\item Template material
+		\item Purpose, e.g. athletics, rifle shooting
+	\end{itemize} \\ \hline
+
+Different levels of access & 3 levels of access, with each level having all the permissions of the levels below
+\begin{itemize}
+	\itemsep0em
+	\item Student (Lowest): can submit templates to be approved then used by teachers/administrators
+	\item Teachers: can also submit jobs to administrators for approval, who run the laser cutter. Can also approve templates.
+	\item Administrators: have all permissions, can view all information and approve all jobs/templates, to be cut by the laser cutter.
+\end{itemize} \\ \hline
+
+\end{tabular}
+
+
+\subsubsection{Specifications}
+The school computers are mostly Dell ThinkCentre machines, with the following specifications \newline 
+
+
+\begin{tabular}{|p{6cm}|p{6cm}|}
+	\hline
+	\rowcolor{gray!25}
+	\textbf{CPU} &  Intel® Pentium® CPU G3220 @ 3.00 (GHz) \\ \hline
+
+	\textbf{RAM} &  8192MB (8GB) \\ \hline
+
+\rowcolor{gray!25}
+	\textbf{Graphics Adapter} &  Intel® HD Graphics \\ \hline
+
+	\textbf{Operating System} &  Windows 10 Pro \\ \hline
+	 
+\end{tabular}
+\pagebreak 
+\\
+Therefore, program requirements should include: \\
+\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|}	
+	\hline
+	\rowcolor{gray!25}
+	& \textbf{Minimum Requirements}  & \textbf{Recommended Requirements} \\ \hline
+	
+	\rowcolor{gray!25}
+	\textbf{CPU} &  Dual Core 2 GHz+ &  Quad Core 3 GHz+ \\ \hline
+	
+	\rowcolor{white}
+	\textbf{RAM} &  512 MB &  4GB \\ \hline
+	
+	\rowcolor{gray!25}
+	\textbf{Operating System (Client)} &  Windows 7 &  Windows 7, 8, 10 \\ \hline
+	
+	\rowcolor{white}
+	\textbf{Dependencies (Client)} &  NET Framework 4.0 &  NET Framework 4.0 \\ \hline
+	
+	\rowcolor{gray!25}
+	\textbf{Operating System (Servier)} &  Windows 7, MacOSX 4.0, Ubuntu 16.04+ &  Windows 7+, Ubuntu 16.04+ \\ \hline
+	
+	
+\end{tabular}
+
+\begin{itemize}
+	\itemsep0em
+	\item We chose to limit the Client Program to the Windows operating system, all the school computers run windows exclusively. However, the server software must be cross platform, as servers are often run from a variety of OS’s (Linux, windows etc.)
+	\item The program should run well on school computers, as they meet both the minimum and recommended requirements.
+\end{itemize} 
+
+\section[Feasibility Study]{Feasibility Study \footnote{Feasibility Study by Jack}}
+\subsection{Market feasibility}
+\begin{wrapfigure}{R}{0.4\textwidth} \centering \includegraphics[width=0.4\textwidth]{wrap1.png} \caption{\label{fig:Diagram} Desktop 3D printers sold. Source: Wohlers Report 2016}\end{wrapfigure} 
+
+
+The proposed plan is to design a software product that will use the laser cutting machine to produce physical products. The project involves several industries: software design, industrial production / manufacturing and product design.
+
+The low volume and DIY (Do it yourself) manufacturing market has flourished, due to the higher availability and the diminishing costs associated with manufacturing. Flexible Manufacturing Systems (FMS), like the laser cutter or 3D printer allow for arbitrary objects to be created from computer-aided designer (CAD) files.
+
+Currently, solutions on the marketplace include: 2D CAD programs, which although work with the laser cutter, becomes inconvenient and inefficient when producing a large quantity of objects with variations, and complex templating solutions which require a significant amount of programming and technical expertise. 
+The project involves using a program to aid in the generation and production of files that are sent to the laser cutter. There are few or no off-the-shelf type programs that achieve this, as laser cutting is often a specialised and expensive industrial process. It is often cumbersome for students and teachers to create multiple copies of a single object, which the program seeks to automate
+Conclusion:
+LAMP focuses on the niche in the market. There are few commercial programs that help with low volume production, a market that has boomed in the last five years. Since the demand for such a software is increasing and there are few competitors, this program will have a well-defined target market, and is market feasible.
+
+\subsection{Technical feasibility}
+There are many technical components that need to be researched and experimented on beforehand to ensure that the project's success. Fortunately, the laser cutting project developed last year can be used as a proof of concept, with many technical barriers solved which can be ported over to the new program (existing software).
+Designer Technology:
+LAMP will include a designer that allows editing of templates dynamically inside the program. It will essentially be a 2D only CAD screen, with options for lines, circles, boxes, shapes and text. Text may be in different sizes and fonts. The designer will allow the three different cutting types to be specified for individual elements (vector cut, vector engrave, raster engrave). This will then be saved in a custom format (.spiff file), which contains all the data required to store the required template. Placeholder elements can be specified in the .spiff file, so that the template can be filled in automatically through the program with a list of names, or years.
+\begin{itemize}
+	\item Basic 2D CAD interface
+	\begin{itemize}
+		\itemsep0em
+		\item rendering of elements onto screen
+		\item optimization to run on lower-powered computers
+		\item real dimensions (cm/mm)
+		\item zoom
+		\item different modes (cutting, engraving)
+	\end{itemize}
+	
+	\item custom file type
+	\begin{itemize}
+		\itemsep0em
+		\item .SPF file contains data on placeholder elements (text that needs to be replaced) and also line/box data
+		\item read and write .SPF files
+	\end{itemize}
+\end{itemize}
+
+\subsection{AutoCAD/Illustrator Interoperability}
+The .SPF file will need to be exported to illustrator (.ai) and/or AutocAD (.dxf) files to be used by the laser cutter. The program will also need to be able to take a list of names/years from a document file, using this data to replace the placeholder elements on a template, and layout the template a variable amount of time in the output file in an optimum matter, taking into account the total space in the laser cutter. Manual alignment will also be possible.
+\begin{itemize}
+	\item export to vector format (ai/dxf)
+	\begin{itemize}
+		\itemsep0em
+        \item writing/reading design files
+        \item generating different vector lines
+        \item vector fonts
+        \item vector lines and curves
+    \end{itemize}
+    \item read/write document files (.docx, .xlsx, .csv)
+    \item layout of multiple copies of template
+\end{itemize}
+
+\subsection{Utility and calibration}
+The program will have error-checking algorithms on .AI files, to ensure it has lines that are compatible with the laser-cutter. 
+\begin{itemize}
+	\item read/write illustrator files 
+	\begin{itemize}
+    	\item file checking algorithm for illustrator files
+  	\end{itemize}
+\end{itemize}
+
+\subsection{Laser cutter machine}
+The laser cutter machine is a complex piece of hardware, capable of cutting thin material via vector lines, and engraving with both vector and raster modes available. The laser bed or cutting space is 450 x 600mm, which will limit the maximum number of trophies cut at once. It uses a 50 watt, 10|TODO|m laser, and the materials it can cut are thin woods and plastics, but it can engrave a variety of materials, including plastics, woods and glass. 
+\begin{itemize}
+	\itemsep0em
+	\item Capabilities of the laser cutter
+	\begin{itemize}
+		\itemsep0em
+    	\item engraves plastics, woods and glass
+        \item cuts thin woods and plastics
+    \end{itemize}
+
+    	\item Size of the laser cutter (450 x 600mm)
+    	\item Safety of operation 
+
+\end{itemize}
+
+\subsection{School Systems}
+LAMP stores the approved templates which are available to anyone using the program and the jobs in queue in a server. This may be run locally on the school server, or in a cloud server hosted on SaaS platforms. The files and credentials of users will need to be encrypted, to increase the safety of the system, and some basic measures need to be taken to stop hacking or denial of service (DOS) attempts. This server will come as a separate executable to the client system used by the end user. The client software will need to be able to run on school computers, which mostly have dual-core intel processors with between 8 to 16 gigabytes of ram. Approval from the school’s IT staff may be required to install LAMP’s client software. 
+\begin{itemize}
+	\item Server Software (if required)
+	\begin{itemize}
+		\itemsep0em
+        \item file and credential encryption
+        \item serve requests to list all approved templates
+        \item unblocked from school internet 
+        \item needs to be secure and reliable
+    \end{itemize}
+    
+    \item Client Software
+    \begin{itemize} 
+    	\itemsep0em
+        \item may need administrator permissions to install on school systems (ask IT).
+    	\item will connect to the server through the internet, or the schools internal intranet.
+        \item optimization to run on school’s computers
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Conclusion}
+There are a large number of technical challenges to solve in order for lamp to succeed. Fortunately, several of these have already been addressed in the previous program, and the Industrial Arts staff at school understand the laser cutting system, providing enough information to explain many of the laser-cutting related problems. Over the holidays and throughout the year, research will need to be done on the schools systems, the designer interface and our custom file type. Thanks to the previous program and our teams previous experience with working on the laser cutter, we will be able to focus on these issues instead, reducing the amount of work needed. Overall, the program will be technically feasible. 
+
+\subsection{Financial feasibility}
+A middle-end laser cutting machine is an expensive instrument, coming around between \$20,000 - \$100,000. There are cheaper alternatives, but they are slower and/or less precise. However, as the school already has bought a laser cutter, the costs are mostly maintenance and teacher time.
+The original trophy system can be used as a proof of concept, and has proven to be cost effective. Expanding this system to other awards may allow for even more cost saving. Awards for different sports account for a significant savings. Costs can be further reduced by bulk buying many trophies from overseas.
+Take for example the previous program, which focused on a particular trophy, the School Trophy. Initially it had cost the school 135\$ per trophy, including raw material and engraving costs. However, a blank trophy can be sourced for 15\$, and engraved on the school's cutter. Given that the hourly rate for teachers is 80\$ per hour, with each school trophy taking approximately 15 minutes of time, and producing a trophy in-house would costs 35\$, or a 75\% decrease in cost. LAMP will decrease the time required to setup and cut the trophy, and also allow for other types of trophies to be cut through its templating system, which the old system could not do.
+
+We will require some material and test awards to experiment with the abilities of the laser cutter, which needs to be accounted into our budget. Other costs may include licensing libraries, distribution costs and/or server maintenance. However, even with all these costs factored in, the in-house production of trophies along with other objects will still be cost-effective, saving the school thousands of dollars per annum.
+
+The system will have some server setup and maintenance costs - however, this will be low, as it can be hosted on the school’s existing servers or through inexpensive cloud providers. The program will not need much processing power, and will not handle a large amount of data, further reducing the server costs. Other setup costs include install time and storage space for LAMP’s client software. A developer may be hired to continue to maintain the program after its release, and to fix any bugs discovered after.
+
+LAMP will require a significant amount of developer time, and falling into the medium range in terms of software, probably costing between \$20,000 - \$60,000, based off several other custom software projects. Developer time costs between 75\$ to 200\$ per hour, and the project overall will take around 200-300 hours. The software will be licensed to the school, and may be licensed to multiple schools and businesses. A fee will be charged per user per year, with business subscriptions including priority tech support and user management features. There will be 3 tiers: individual licence will be between 10-30\$ per year for 1 individual, small business (10-1000 users) for 20-40\$ per year per user, and large businesses negotiated separately. Small and large business are also given a copy of the server software that can be setup on their own servers to serve their organisation’s users. This copy will be completely separate from the systems of other businesses, allowing queued jobs and credentials to be kept separately.
+
+\subsubsection{Conclusion}
+The project’s main expenses are developer time, and will cost approximately \$40,000. This will be recouped by licensing the software to multiple business and individuals, and charging a yearly fee, which will also help pay the maintenance developers. For the business, LAMP will decrease operational costs by automating parts of the laser cutting process. Therefore, LAMP is financially feasible.
+
+\subsection{Operational feasibility}
+\subsubsection{Users}
+Users may include teachers and some select students. Teachers will be able to use the program to quickly and easily submit a set of awards for some students. The process should not be changed significantly: the list of students will be sent to the program instead of emailed to an awards seller. The user interface will need to be reliable, consistent and uncomplicated, especially the template designer, which will allow both students and teachers to create the shapes and text without beforehand knowledge of the intricacies of CAD programs and the laser cutter. Little training will be required to use the system for users - pick a template, give some names, submit job. This information will be provided by video tutorials, reference manuals and online help. On-call tech support may be available for business users. Users are able to design templates and/or submit jobs, depending on the permissions given to the user by an administrator.
+
+\subsubsection{Administrators}
+Administrators/IA staff will manage and approve request from the users. This will take a significant amount of time, that would otherwise be spent on teaching. To reduce the impact this has, the program will attempt to automate many of the intermediary steps in setting up the laser cutter, and allow for less time calibrating the machine, a process that takes ~10-20 minutes each set of trophies. It will also use more efficient processes to reduce the production time. The program will first be tested on only the industrial arts staff, to ensure the time required to process these trophies will not be an overwhelming amount of work. Administrators have the highest level of access to the program, with permissions to approve both submitted jobs and submitted templates, create and manage users and other administrators, reset passwords etc. This will require a significant amount of training, through video tutorials, reference manuals and online help, with tech support available for businesses. An administrator will require experience with the laser cutter, as they must physically set up the material on the laser cutter in accordance to the current job.
+\subsubsection{Conclusion}
+For users, the program will require very little training. This means that it will be easy to introduce new users to the system. Administrators will require significant training; however, the industrial arts staff are already accustomed to the laser cutter, easing this process. Support will be given in the form of video tutorials, reference manuals, online support, with on-call technical support for businesses. Overall, this system will not require much training.
+
+\subsection{Social and ethical feasibility}
+The program will handle some sensitive data from users - their full name, email, passwords, secret questions and/or contact information will be required by the program in order to operate. This will be stored on the client’s computers, and on LAMP’s server software if applicable. Security will need to be kept in mind to prevent unauthorized access to this sensitive data, through extra security measures taken on the client’s computers, e.g. anti-virus software, correct user privileges, and in the program, e.g. encryption of database, authentication through passwords. Additional server software provides another vector for attackers, and appropriate security measures, like https will need to be used to ensure communications between the program and the server are safe, and to prevent access from unauthorized users. Care will need to be taken to ensure the privacy of the information given to the program by preventing unauthorized access. 
+The program should be as inclusive as possible: this would require the program work on lower-powered machines, have an easy and under stable user interface, and users with disabilities considered. Copyright and intellectual property is another possible issue, with appropriate credit given and/or licenses obtained from code included from another source. The program may reduce the amount of time spent laser cutting, but since laser cutting is a secondary job to teaching at Sydney Boys High School, its effect will be negligible on the workforce.
+\subsection{Conclusion}
+The privacy of users will need to be considered when developing the solution. Appropriate measures need to be taken to prevent unauthorized access. The software should be inclusive to all users, by altering the user interface to suit the needs of individuals.  Intellectual property rights of others need to be considered in the program. 
+
+\subsection{Overall Feasibility}
+the issues mentioned with this feasibility study will need to be resolved, but all essential components of the program will be met in the time period set in the Gantt chart
+
+\subsection{Possible Solutions}
+Aim: To better use the laser cutting system by simplifying the process required to design and cut objects, and allowing teachers and students limited access into the system.\\
+
+
+\noindent \textbf{1.  "Upgrade" Approach}
+
+\begin{wrapfigure}{R}{0.3\textwidth} \centering \includegraphics[width=0.3\textwidth]{sol1.png} \end{wrapfigure} 
+This approach would see the original trophy generation revisited and revamped to fix issues outlined by staff. In addition, new features could be added, like support for different shapes or awards, and improvements could be made to the GUI to increase its useabilility. This program would only be accessible and usable by IA staff to generate shapes, which can then be rendered by Illustrator a format the laser cutter can use.
+	\begin{itemize}
+		\itemsep0em
+		\item Low cost, complexity and maintance required
+		\item Code reuse, which decreases development time and cost
+		\item Similar to system already in use, reduceds training required
+	\end{itemize} 
+
+\noindent \textbf{2. “Designer” Approach }
+
+\begin{wrapfigure}{R}{0.3\textwidth} \centering \includegraphics[width=0.3\textwidth]{sol2.png} \end{wrapfigure} 
+This approach requires a custom piece of software to be created, and is similar to the system already in use in the school. Using a program to generate a known-good file will allow IA staff to skip several steps in the laser cutting process. However, this incurs additional cost, both in development/setup time and cost. Some basic training and documentation will also need to be provided to the industrial arts teachers using the program. This solution does not attempt to track the created files, relying on email or another form of communication to send and receive files.
+	\begin{itemize}
+		\itemsep0em
+		\item Design tool that loads much faster than AutoCAD and uses less resources
+		\item Specialised user interface that contains only the tools required for laser cutting templates
+		\item File checking features to ensure linetypes are correct
+		\item Automates some printing settings to the laser cutter
+	\end{itemize}
+
+\pagebreak
+\noindent \textbf{\\ 3. “Server-Client” Approach }
+
+\begin{wrapfigure}{R}{0.3\textwidth} \centering \includegraphics[width=0.3\textwidth]{sol3.png} \end{wrapfigure} 
+This approach uses a server to store templates and jobs that users can edit and use. Using a server allows easier communication between the end-users and the IA staff, but incurs additional cost and setup complexity. Using a server also entails an additional, recurring cost of hosting the server. Security over the net could also be an issue, and care will need to be taken to avoid access by unauthorized individuals over the internet. On the other hand, the server-client approach will allow for better tracking of individual jobs, centralization of users to ensure only the correct people have access to the program through user login and server-side checking of files. This system also may allow users/administrators to use the system from multiple places, as long as there is a working internet connection
+Features:
+	\begin{itemize}
+	\itemsep0em
+	\item Loads much faster than AutoCAD and uses less resources
+    \item Specialised user interface that contains only the tools required for laser cutting templates
+    \item File checking features to ensure linetypes are correct
+    \item Automates some printing settings to the laser cutter
+    \item Templates on server can be accessed from anywhere with an internet connection
+    \item Tracking of jobs that are in queue or complete
+    \item User and Administrator management
+    \end{itemize}
+
+
+\paragraph{The client has chosen option 3}
+The client would like to choose Option 3. Option 1 is far too basic and not really an  the current system. Option 2 again is not an improvement on the current system, as we already use a server. Option 3 contains many new features that could help improve the efficiency of laser cutting, despite the extra cost.
+
+\section[Rights Research]{Rights Research \footnote{Section by Max}}
+A software licence determines the use and redistribution of software. It determines how the software can be used by the purchaser of the software, often called the licensee, and may protect the developer legally from damage caused by the software.
+
+
+\pagebreak 
+\textbf{\\There are several types of licences:}\\
+\begin{itemize}
+	\itemsep0em
+	\item Public domain
+	\item Open source (FOSS) licenses
+	\item Freeware / Shareware
+	\item Proprietary
+\end{itemize}
+ \begin{center}{\includegraphics[width=10cm]{licence.png}}
+ 	\end{center}
+
+Open source licenses, like the GNU GPLv3 licence are for collaborative projects, where developers create code, often for free for their own use.  Any developer can download and alter the source code of a GPL project, but they must provide the altered source code to end-users for their derivative work, display a notice on the program, crediting the original developers of the source code and license their work under the GPL. Many open source projects use this licence, as it ensures that their work will be credited and improvements to the software carried out will be made free to the public. The MIT licence is another software licence. It is a short, simple licence, that allows the alteration of source code with no other conditions. Both these open source licences disclaim any warranties or responsibilities of the original developer in the quality and usability of the code.
+
+\noindent \fbox{
+	\parbox{\textwidth}
+{Copyright $<$2017-2018$>$ $<$Max Wharton-Jones$>$
+	
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+	\begin{center}\textbf{The MIT Licence}
+		\end{center}
+}
+}
+
+Freeware licences may use ads or donations in order to make a profit. However, it often lacks enterprise support. Shareware uses locked features or a trial period, allowing users to try out the software before committing to a purchase. 
+
+Open source licences are unsuitable for our project, as they require the distribution of source code. In addition, there is no need for an open source licence as the project will only be created and maintained by our team. A freeware / Shareware licence is unsuitable, as our program will mostly target large organisations, who are willing to pay extra in return for support. Therefore, the proprietary licence will be the most suitable. The software will be maintained by our team, allowing for more features and bug fixes when discovered, funded by the licensing fee. The safety, reliability and usability of the program is essential, as it involves the laser cutter, an expensive and potentially dangerous machine. 
+\subsection{IP rights}
+Waxy LASER Solutions retains all intellectual property rights to the software. This is necessary so that the program can be licensed to other businesses, and to allow the program to be maintained by our team in the future. 
+
+
+\subsection{Contract}
+\centering\Large\textbf{L.A.M.P - Terms and conditions - Waxy LASER Solutions}\\
+\rule{\textwidth}{2pt}
+
+\flushleft
+\small
+\noindent 1. \textbf{Preamble:} This Agreement, signed on Dec 6, 2017 (hereinafter: Effective Date) governs the relationship between Sydney Boys High School, a School Entity, (hereinafter: Licensee) and L.A.M.P, a partnership under the laws of whose principal place of School is 556 Cleveland St, Moore Park NSW 2021 (hereinafter: Licensor). This Agreement sets the terms, rights, restrictions and obligations on using L.A.M.P (hereinafter: The Software) created and owned by Licensor, as detailed herein
+
+\noindent\rule{\textwidth}{0.5pt}
+\noindent 2. \textbf{License Grant:} Licensor hereby grants Licensee a Personal, non-assignable and non-transferable, commercial, royalty free, non-exclusive license, all with accordance with the terms set forth and other legal restrictions set forth in 3rd party software used while running Software.
+
+
+\begin{enumerate}
+	\item Limited: Licensee may use Software for the purpose of: \begin{enumerate}
+		\item Running Software on Licensee’s Website[s] and Server[s]; 
+		\item Allowing 3rd Parties to run Software on Licensee’s Website[s] and Server[s]; 
+		\item Publishing Software output to Licensee and 3rd Parties; 
+		\item Distribute verbatim copies of Software’s output (including compiled binaries);
+	\end{enumerate}
+\item This license is granted perpetually, as long as it is not materially breached.
+\item \textbf{Binary Restricted:} Licensee may sublicense Software as a part of a larger work containing more than Software, distributed solely in Object or Binary form under a personal, non-sublicensable, limited license. Such redistribution shall be limited to 1600 codebases.
+\item \textbf{Non-Assignable and Non-Transferable:} Licensee may not assign or transfer his rights and duties under this license.
+\item \textbf{Commercial, Royalty Free:} Licensee may use Software for any purpose, including paid-services, without any royalties
+
+\end{enumerate}
+
+\noindent\rule{\textwidth}{0.5pt}
+\noindent 3. \textbf{Term \& Termination:} The Term of this license shall be until terminated. Licensor may terminate this Agreement, including Licensee’s license in the case where Licensee:
+\begin{enumerate}
+	\item became insolvent or otherwise entered into any liquidation process; or
+\item exported The Software to any jurisdiction where licensor may not enforce his rights under this agreements in; or
+\item Licensee was in breach of any of this license's terms and conditions and such breach was not cured, immediately upon notification; or
+\item Licensee in breach of any of the terms of clause 2 to this license; or
+\item Licensee otherwise entered into any arrangement which caused Licensor to be unable to enforce his rights under this License.
+\end{enumerate}
+
+\noindent\rule{\textwidth}{0.5pt}
+\noindent 4. \textbf{Payment:} In consideration of the License granted under clause 2, Licensee shall pay Licensor a fee, via Credit-Card, PayPal or any other mean which Licensor may deem adequate. Failure to perform payment shall construe as material breach of this Agreement.
+
+\noindent\rule{\textwidth}{0.5pt}
+\noindent 5. \textbf{Upgrades, Updates and Fixes:} Licensor may provide Licensee, from time to time, with Upgrades, Updates or Fixes, as detailed herein and according to his sole discretion. Licensee hereby warrants to keep The Software up-to-date and install all relevant updates and fixes, and may, at his sole discretion, purchase upgrades, according to the rates set by Licensor. Licensor shall provide any update or Fix free of charge; however, nothing in this Agreement shall require Licensor to provide Updates or Fixes.
+\begin{enumerate} 
+	\item Upgrades: for the purpose of this license, an Upgrade shall be a material amendment in The Software, which contains new features and or major performance improvements and shall be marked as a new version number. For example, should Licensee purchase The Software under version 1.X.X, an upgrade shall commence under number 2.0.0.
+
+\item Updates: for the purpose of this license, an update shall be a minor amendment in The Software, which may contain new features or minor improvements and shall be marked as a new sub-version number. For example, should Licensee purchase The Software under version 1.1.X, an upgrade shall commence under number 1.2.0.
+\item Fix: for the purpose of this license, a fix shall be a minor amendment in The Software, intended to remove bugs or alter minor features which impair the The Software's functionality. A fix shall be marked as a new sub-sub-version number. For example, should Licensee purchase Software under version 1.1.1, a fix shall commence under number 1.1.2.
+\end{enumerate}
+
+\noindent\rule{\textwidth}{0.5pt}
+\noindent 6. \textbf{Support:} Software is provided under an AS-IS basis and without any guarantees of updates or maintenance. Nothing in this Agreement shall require Licensor to provide Licensee with fixes to any bug, failure, mis-performance or other defect in The Software.
+\begin{enumerate}
+	\item Bug Notification: Licensee may provide Licensor of details regarding any bug, defect or failure in The Software promptly and with no delay from such event; Licensee shall comply with Licensor's request for information regarding bugs, defects or failures and furnish him with information, screenshots and try to reproduce such bugs, defects or failures.
+\item Feature Request: Licensee may request additional features in Software, provided, however, that 
+\begin{enumerate} 
+	\item Licensee shall waive any claim or right in such feature should feature be developed by Licensor; 
+	\item Licensee shall be prohibited from developing the feature, or disclose such feature request, or feature, to any 3rd party directly competing with Licensor or any 3rd party which may be, following the development of such feature, in direct competition with Licensor; 
+	\item Licensee warrants that feature does not infringe any 3rd party patent, trademark, trade-secret or any other intellectual property right; and 
+	\item Licensee developed, envisioned or created the feature solely by himself.
+\end{enumerate}
+\end{enumerate}
+
+\rule{\textwidth}{0.5pt}
+\noindent 7. \textbf{Liability:}  To the extent permitted under Law, The Software is provided under an AS-IS basis. Licensor shall never, and without any limit, be liable for any damage, cost, expense or any other payment incurred by Licensee as a result of Software’s actions, failure, bugs and/or any other interaction between The Software and Licensee’s end-equipment, computers, other software or any 3rd party, end-equipment, computer or services.  Moreover, Licensor shall never be liable for any defect in source code written by Licensee when relying on The Software or using The Software’s source code.
+
+\noindent\rule{\textwidth}{0.5pt}
+\noindent 8. \textbf{Warranty: }
+\begin{enumerate}
+	\item Intellectual Property: Licensor hereby warrants that the Software does not violate or infringe any 3rd party claims in regards to intellectual property, patents and/or trademarks and that to the best of its knowledge no legal action has been taken against it for any infringement or violation of any 3rd party intellectual property rights.
+\item No-Warranty: The Software is provided without any warranty; Licensor hereby disclaims any warranty that The Software shall be error free, without defects or code which may cause damage to Licensee’s computers or to Licensee, and that Software shall be functional. Licensee shall be solely liable to any damage, defect or loss incurred as a result of operating software and undertake the risks contained in running The Software on Licensee’s Server[s] and Website[s].
+\item  Prior Inspection: Licensee hereby states that he inspected The Software thoroughly and found it satisfactory and adequate to his needs, that it does not interfere with his regular operation and that it does meet the standards and scope of his computer systems and architecture. Licensee found that The Software interacts with his development, website and server environment and that it does not infringe any of End User License Agreement of any software Licensee may use in performing his services. Licensee hereby waives any claims regarding The Software's incompatibility, performance, results and features, and warrants that he inspected the The Software.
+\end{enumerate}
+
+\noindent\rule{\textwidth}{0.5pt}
+\noindent 9. \textbf{No Refunds:} Licensee warrants that he inspected The Software according to clause 7 and that it is adequate to his needs. Accordingly, as The Software is intangible goods, Licensee shall not be, ever, entitled to any refund, rebate, compensation or restitution for any reason whatsoever, even if The Software contains material flaws.
+
+\noindent\rule{\textwidth}{0.5pt}
+\noindent 10. \textbf{Indemnification:} Licensee hereby warrants to hold Licensor harmless and indemnify Licensor for any lawsuit brought against it in regards to Licensee’s use of The Software in means that violate, breach or otherwise circumvent this license, Licensor's intellectual property rights or Licensor's title in The Software. Licensor shall promptly notify Licensee in case of such legal action and request Licensee’s consent prior to any settlement in relation to such lawsuit or claim.
+
+\noindent\rule{\textwidth}{0.5pt}
+\noindent 11. \textbf{Governing Law, Jurisdiction:} Licensee hereby agrees not to initiate class-action lawsuits against Licensor in relation to this license and to compensate Licensor for any legal fees, cost or attorney fees should any claim brought by Licensee against Licensor be denied, in part or in full
+\noindent\rule{\textwidth}{0.5pt}
+
+\normalfont
+
+\chapter{Planning and Designing}
+\section[Context Data flow diagrams]{Context Diagram and Data flow diagrams \protect\footnote{Context and DFD by Max}}
+\centering
+	\fbox{\includegraphics[width=10cm, height=5.5cm]{contextdiagram.png}}
+
+	\fbox{\includegraphics[width=\textwidth, height=7cm]{dfdlvl1.png}}
+		\fbox{\includegraphics[width=\textwidth, height=10cm]{dfdlvl21.png}}
+			\fbox{\includegraphics[width=\textwidth, height=10cm]{dfdlvl22.png}}
+
+
+\section[System Flowchart]{System Flowchart \protect\footnote{System Flowchart By Jack}}
+\fbox{\includegraphics[width=\textwidth]{systemflowchart.png}}
+
+\section[IPO Chart]{IPO Chart \protect\footnote{IPO Chart by Shourov}}
+\centering
+\subsection{Select Template}
+\begin{tabular}{|p{3cm}|p{5cm}|p{4cm}|}	
+	\hline
+	\rowcolor{gray!25}
+	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
+	
+	\rowcolor{white}
+	\textbf{Array of SPF files} &  
+	Obtains Template From Database \newline
+	Displays all template designs in the template database \newline
+	Client selects appropriate template from the database
+	 &  Partial SPF File containing data for the template selected \\ \hline
+	
+	\rowcolor{gray!25}
+	\noindent \textbf{
+		Names (string) \newline
+		Number of Awards (int) \newline
+		Args*(vary)
+	} &  Adds Data to the SPF file containing the type of template already chosen \newline
+* \textit{based on the template chosen, the user will be prompted for certain data. An example is for a trophy that requires both a name and a score. The user will be prompted to enter the name as well as the score. If left blank, the input will be considered invalid unless otherwise specified.}
+ &  Complete SPF File containing both the selected template data as well as the variation data specified by the user \\ \hline
+	
+\end{tabular}
+
+\subsection{Design Template}
+\begin{tabular}{|p{3cm}|p{5cm}|p{4cm}|}	
+	\hline
+	\rowcolor{gray!25}
+	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
+	
+	\rowcolor{white}
+	\textbf{Array of SPF files} &  
+	Creates Template from Selection \newline
+	Selection From Client  \newline
+	\begin{itemize}
+		\itemsep0em
+		\item Presented as a selection GUI
+		\item Displays all template designs in the template data base
+		\item Client selects appropriate template from the database
+  \end{itemize}
+	&  Partial SPF File containing data for the template selected \\ \hline
+	
+	
+	
+	\rowcolor{gray!25}
+	\noindent \textbf{
+		Raw AI / EPS Template File
+	} &  Edits Template with Graphical Editor \newline
+Graphical Editor
+\begin{itemize}
+	\itemsep0em
+	\item Editor Based off of CAD software
+	\item Tools include Line creation
+	\item Ability to add images
+	\item Ability to add dynamic text \footnotemark
+	\item Ability to add static text \footnotemark
+	\item Ability to create CUT lines and ENGRAVE lines
+\end{itemize}
+	&  AI / EPS Template File\\ \hline
+	
+	\rowcolor{white}
+	\textbf{Login / Password (string)} &  
+	Authenticates User
+	&  Authentication Level (Admin / Teacher / Student) \\ \hline
+	
+	\rowcolor{gray!25}
+	\textbf{AI / EPS Template File \newline
+		Authentication level of Client(integer)} &  
+	Sends to get verified
+	& None \\ \hline
+	
+	
+	
+\end{tabular}
+\footnotetext[4]{Dynamic text is text which is different for each job from the template file. An example of Dynamic text is the name on a trophy
+}
+\footnotetext[5]{Static text is text which appears on every job from the template file. An example of Static text is the year on a trophy}
+
+\subsection{Queue Job}
+\begin{tabular}{|p{5cm}|p{3cm}|p{4cm}|}	
+	\hline
+	\rowcolor{gray!25}
+	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
+	
+	\rowcolor{white}
+	\textbf{Login / Password (String)} &  
+	Authentication
+	&  Authentication Level (Admin / Teacher / Student) \\ \hline
+	
+		\rowcolor{gray!25}
+	\textbf{SPF File containing \begin{itemize}
+			\itemsep0em
+			\item Template Selected from Template Database
+			\item Variation Data unique to the job required to client
+			\item Authentication level of Client
+			\item Client Details
+		\end{itemize}
+	} &  
+	Add to Job Queue Database
+	& Reponse code \\ \hline
+	\end{tabular}
+
+\subsection{Approve Job}
+\begin{tabular}{|p{3cm}|p{5cm}|p{4cm}|}	
+	\hline
+	\rowcolor{gray!25}
+	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
+	
+	\rowcolor{white}
+	\textbf{Login / Password (String)} &  
+	Authentication
+	&  IF Authentication level is not Admin deny Approval ability \\ \hline
+	
+	\rowcolor{gray!25}
+	\textbf{SPF File from Job Queue DB} &  
+	Approval Process \newline
+	Admin level client will see
+	\begin{itemize}
+		\itemsep0em
+		\item Preview of SPF File
+		\item Line weight detail of the SPF file
+		\item Authentication level of the user
+		\item Client Details
+	\end{itemize}
+	& IF Approved the job is sent to a folder to be laser cut \newline 
+	The SPF File is converted to AI / EPS files to match the format of the Laser Cutter. If required, the job is split into multiple files \newline
+	IF Not Approved the job is deleted
+	\\ \hline
+\end{tabular}
+
+
+\subsection{Set Up Laser Cutter}
+\begin{tabular}{|p{3cm}|p{5cm}|p{4cm}|}	
+	\hline
+	\rowcolor{gray!25}
+	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
+	
+	\rowcolor{white}
+	\textbf{Login / Password (String)} &  
+	Authentication
+	&  IF Authentication level is not Admin deny Approval ability \\ \hline
+	
+	\rowcolor{gray!25}
+	\textbf{AI / EPS File} &  
+	Laser Cutter Process
+	\begin{itemize}
+		\itemsep0em
+		\item An Admin must place the resource within the Laser Cutter
+		\item Open the files on the Laser Cutter computer
+		\item Print via Laser Cutter printer to the Laser Cutter
+		\item Remain by the Laser Cutter until the job is finished
+		\item Remove finished job and replace material if need be
+	\end{itemize}
+	& Final Job
+
+	\\ \hline
+\end{tabular}
+
+\section[Gantt Chart]{Gantt Chart \protect\footnote{Gantt Chart by Shourov}}
+
+\includegraphics[width=\textwidth]{ganttchart1.png}
+\vfill
+\includegraphics[width=\textwidth]{ganttchart2.png}
+\vfill
+\pagebreak
+
+
+
+
+
+\end{document}
+
+
