@@ -12,13 +12,17 @@
 \usepackage{xcolor}
 \usepackage{colortbl}
 \usepackage{wrapfig}
+\usepackage{longtable}
+\usepackage{fullpage}
+\usepackage[section]{placeins}
+\usepackage{multirow}
 \setlength{\headheight}{62pt}
 
 \lhead{L.A.M.P \\ Waxy LASER Solutions \\ Max Wharton-Jones, Shourov Quazi, Jack Jiang}
 \rhead{
 \includegraphics[width=2cm]{lamp.png}
 }
-%\pagestyle{fancy}
+\pagestyle{fancy}
 
 
 \newenvironment{qanda}{\setlength{\parindent}{0pt}}{\bigskip}
@@ -117,11 +121,11 @@ Before laser cutting, the file must be checked manually by staff to ensure for c
 
 \subsubsection{Needs}
 
-\begin{tabular}{|p{5cm}|p{10cm}|}
+\begin{longtable}{|p{4cm}|p{10cm}|}
 	
    \hline
    \rowcolor{gray!50}
-   \textbf{Needs} & \textbf{Objectives} \\[10pt]
+   \textbf{Needs} & \textbf{Objectives} \\
    
    Must store $>50$ different records & 
 	\begin{itemize}
@@ -167,13 +171,6 @@ Before laser cutting, the file must be checked manually by staff to ensure for c
   	\item Vector-based fonts
   \end{itemize} \\ \hline
 
-\end{tabular}
-
-\begin{tabular}{|p{5cm}|p{10cm}|}
-	\hline
-	\rowcolor{gray!50}
-	\textbf{Needs} & \textbf{Objectives} \\[10pt]
-
 
   Improved GUI usability & Current GUI has many issues, that must be rectified in the solution
 \begin{itemize}
@@ -204,12 +201,6 @@ Before laser cutting, the file must be checked manually by staff to ensure for c
 	 	\item Displays linetype data in readable format
 	 \end{itemize} \\ \hline
  
-\end{tabular}
-
-\begin{tabular}{|p{5cm}|p{10cm}|}
-	\hline
-	\rowcolor{gray!50}
-	\textbf{Needs} & \textbf{Objectives} \\[10pt]
 Ability to search and sort templates  & Ability to attach a number of tags to each template, which can be filtered by the user
 	\begin{itemize}
 		\itemsep0em
@@ -229,14 +220,14 @@ Different levels of access & 3 levels of access, with each level having all the 
 	\item Administrators: have all permissions, can view all information and approve all jobs/templates, to be cut by the laser cutter.
 \end{itemize} \\ \hline
 
-\end{tabular}
+\end{longtable}
 
 
 \subsubsection{Specifications}
 The school computers are mostly Dell ThinkCentre machines, with the following specifications \newline 
 
 
-\begin{tabular}{|p{6cm}|p{6cm}|}
+\begin{longtable}{|p{6cm}|p{6cm}|}
 	\hline
 	\rowcolor{gray!25}
 	\textbf{CPU} &  Intel® Pentium® CPU G3220 @ 3.00 (GHz) \\ \hline
@@ -248,11 +239,10 @@ The school computers are mostly Dell ThinkCentre machines, with the following sp
 
 	\textbf{Operating System} &  Windows 10 Pro \\ \hline
 	 
-\end{tabular}
-\pagebreak 
-\\
+\end{longtable}
+
 Therefore, program requirements should include: \\
-\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|}	
+\begin{longtable}{|p{4cm}|p{4cm}|p{4cm}|}	
 	\hline
 	\rowcolor{gray!25}
 	& \textbf{Minimum Requirements}  & \textbf{Recommended Requirements} \\ \hline
@@ -273,7 +263,7 @@ Therefore, program requirements should include: \\
 	\textbf{Operating System (Servier)} &  Windows 7, MacOSX 4.0, Ubuntu 16.04+ &  Windows 7+, Ubuntu 16.04+ \\ \hline
 	
 	
-\end{tabular}
+\end{longtable}
 
 \begin{itemize}
 	\itemsep0em
@@ -599,7 +589,7 @@ Waxy LASER Solutions retains all intellectual property rights to the software. T
 \section[IPO Chart]{IPO Chart \protect\footnote{IPO Chart by Shourov}}
 \centering
 \subsection{Select Template}
-\begin{tabular}{|p{3cm}|p{5cm}|p{4cm}|}	
+\begin{longtable}{|p{3cm}|p{5cm}|p{4cm}|}	
 	\hline
 	\rowcolor{gray!25}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
@@ -620,10 +610,10 @@ Waxy LASER Solutions retains all intellectual property rights to the software. T
 * \textit{based on the template chosen, the user will be prompted for certain data. An example is for a trophy that requires both a name and a score. The user will be prompted to enter the name as well as the score. If left blank, the input will be considered invalid unless otherwise specified.}
  &  Complete SPF File containing both the selected template data as well as the variation data specified by the user \\ \hline
 	
-\end{tabular}
+\end{longtable}
 
 \subsection{Design Template}
-\begin{tabular}{|p{3cm}|p{5cm}|p{4cm}|}	
+\begin{longtable}{|p{3cm}|p{5cm}|p{4cm}|}	
 	\hline
 	\rowcolor{gray!25}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
@@ -671,13 +661,13 @@ Graphical Editor
 	
 	
 	
-\end{tabular}
+\end{longtable}
 \footnotetext[4]{Dynamic text is text which is different for each job from the template file. An example of Dynamic text is the name on a trophy
 }
 \footnotetext[5]{Static text is text which appears on every job from the template file. An example of Static text is the year on a trophy}
 
 \subsection{Queue Job}
-\begin{tabular}{|p{5cm}|p{3cm}|p{4cm}|}	
+\begin{longtable}{|p{5cm}|p{3cm}|p{4cm}|}	
 	\hline
 	\rowcolor{gray!25}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
@@ -698,10 +688,10 @@ Graphical Editor
 	} &  
 	Add to Job Queue Database
 	& Reponse code \\ \hline
-	\end{tabular}
+	\end{longtable}
 
 \subsection{Approve Job}
-\begin{tabular}{|p{3cm}|p{5cm}|p{4cm}|}	
+\begin{longtable}{|p{3cm}|p{5cm}|p{4cm}|}	
 	\hline
 	\rowcolor{gray!25}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
@@ -726,11 +716,11 @@ Graphical Editor
 	The SPF File is converted to AI / EPS files to match the format of the Laser Cutter. If required, the job is split into multiple files \newline
 	IF Not Approved the job is deleted
 	\\ \hline
-\end{tabular}
+\end{longtable}
 
 
 \subsection{Set Up Laser Cutter}
-\begin{tabular}{|p{3cm}|p{5cm}|p{4cm}|}	
+\begin{longtable}{|p{3cm}|p{5cm}|p{4cm}|}	
 	\hline
 	\rowcolor{gray!25}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
@@ -754,19 +744,126 @@ Graphical Editor
 	& Final Job
 
 	\\ \hline
-\end{tabular}
+\end{longtable}
 
 \section[Gantt Chart]{Gantt Chart \protect\footnote{Gantt Chart by Shourov}}
-
-\includegraphics[width=\textwidth]{ganttchart1.png}
-\vfill
-\includegraphics[width=\textwidth]{ganttchart2.png}
-\vfill
-\pagebreak
-
+\begin{figure}[!htb]
+	\includegraphics[width=\textwidth]{ganttchart1.png}
+	\\
+	\includegraphics[width=\textwidth]{ganttchart2.png}
+\end{figure}
 
 
+\section[Data Dictionary]{Data Dictionary \protect\footnote{Data Dictionary by Jack}}
 
+\tiny
+\begin{longtable}{|p{2cm}|p{3cm}|p{1.5cm}|p{6cm}|}	
+	
+	\hline
+	\rowcolor{gray!25}
+	
+	\small \textbf{Data Structure} & \small\textbf{Data Type}  & \small\textbf{Length \footnotemark} & \small\textbf{Description} \\ \hline
+	
+
+		\multirow{16}{*}{\parbox{2cm}{tblTemplates Array  (TemplateRecord)} }
+		& Array(Of Record) &   &  Contains details about approved templates created using the program. can be saved/loaded as .SPF files \\ 
+		
+		& Auto\textunderscore ID (Auto Number) & 32 & Index 0-2147,483,647 (for database). Primary Key  \\
+		& DXF  (String) & 10000 & Line and text data encoded using the DXF format \\
+		& tags (Array(Of String)) & 20x20 & the criteria that the template meets \\
+		& material (String) & 10 & the material that the template uses\\
+		& length (real) & 8 & the length of each piece, in millimeters\\
+		& height (real) & 8 & the height of each piece, in millimeters\\
+		& thickness (real) & 8 & the thickness of each piece, in millimeters \\
+		& preview (Array(Of Image)) & 3x4MB & preview images for each template \\
+		& creatorId (Integer) & 4 & id of the creator, joined to tblUser.Auto\textunderscore ID\\
+		& approverId (Integer) & 4 & id of the approver, joined to tblUser.Auto\textunderscore ID \\
+		& dynamicTextList(Array(Of String)) & 10x10 & Dynamic texts are text labels that are filled in by the user. They describe the name of the label (e.g. year) \\
+		& textLocation(Array(Of Point)) & 10x16 & the location where the dynamic text will be filled \\ \hline
+		
+			\multirow{7}{*}{\parbox{2cm}{tblSumittedJobs Array  (JobRecord)} }
+		& Array(Of Record) &   &  Contains information about jobs submitted to the IA staff for cutting.  \\ 
+		
+		& Auto\textunderscore ID (Auto Number) & 32 & Index 0-2147,483,647 (for database). Primary Key  \\
+		& template\textunderscore ID & 32 & the id of the spf file to cut. Joined to tblTemplates.Auto\textunderscore ID \\
+		& submitterId (Integer) & 4 & the id of submitter. Joined to tblUser.\textunderscore ID \\
+		& approverId (Integer) & 4 & the id of approver. Joined to tblUser.\textunderscore ID \\
+		& approved (boolean) & 1 & whether or not the job is approved \\
+		& submitDate (date) & 32 & the date in which the job is submitted\\
+		\hline
+		
+			\multirow{6}{*}{\parbox{2cm}{tblUsers Array (UserRecord)} }
+		& Array(Of Record) &   &   Contains information about all the users that are stored in the database \\ 
+		
+		& Auto\textunderscore ID (Auto Number) & 32 & Index 0-2147,483,647 (for database). Primary Key  \\
+		& email (string) & 20 & the email used to sign up \\
+		& password (string) & 20 & password used to sign in\\
+		& accesslevel (integer) & 4 & 1=student, 2=teacher, 3=admin. Determines if the user can do certain actions \\
+		& name (string) & 20 & full name of the user \\
+		\hline
+
+		\multirow{8}{*}{\parbox{2cm}{lines Array (newline)}}
+		& Array (Of Record) & & Stores data about a shape or line drawn using the template designer. Lines is the array containing all the currently drawn lines \\
+		& point1x (real) & 8 &start point x co-ordinate \\
+			& point1y (real) & 8 &start point y co-ordinate \\
+				& point2x (real) & 8 &end point x co-ordinate \\
+					& point2y(real) & 8 &end point y co-ordinate \\
+						& lineType (string) & 20 & the type of shape drawn\\
+						& color (string) & 20 & color of line\\
+						& lineNumber (integer) & 4 & the index of the line in the array\\\hline
+		\multirow{3}{*}{\parbox{2cm}{Point}}
+		& Record & & Stores data of 1 point in 2d space \\
+		& x1 (real) & 8 & location on x axis \\
+		& y1 (real) & 8 & location on y axis \\
+		\hline
+		
+		Unapproved Templates
+		& Array (Of JobRecord) & 20 x 10MB & Stores all the unapproved Templates
+		\\ \hline
+	
+\end{longtable}
+
+\footnotetext{Length in bytes}
+
+
+\begin{longtable}{|p{2cm}|p{3cm}|p{2cm}|p{1cm}|p{6cm}|}	
+	
+	\hline
+	\rowcolor{gray!25}
+	
+	\small \textbf{SCOPE} & \small\textbf{Identifier}  & \small\textbf{Data Type} & \small\textbf{Length \footnotemark} & \small\textbf{Description} \\ \hline
+	
+	\multirow{12}{*}{\parbox{2cm}{Global}}
+	& running & boolean & 1 & whether the program is running or not\\
+	& userTags & Array (string) & 20 & Shows the tags that the user currently want to look at\\
+	& CurrentUser & UserRecord & 1 & Stores the currently logged on user\\
+	& loggedIn & boolean & 1 &shows if te user is logged in or not\\
+	& dataConnection & OleDbConnection & 1 & Used to connect to the database\\
+	& dataAdapter & OleDbDataAdapter & 1 & used to read and write data to the database\\
+	& tool & string & 1 & currently selected tool\\
+	& linesCollection & Array (Line) & 10000 & stores all the lines on the screen\\
+	& USER & constant integer & 1 & accesslevel of user=1\\
+	& TEACHER & constant integer & 1 & accesslevel of teacher=2\\
+	& ADMIN & constant integer & 1 & accesslevel of admin=3\\
+	& sortBy & string & 1 & how to sort the database, either by date or material \\ \hline
+	
+	FilterTemplate & MatchingTemplate & Array (Template) &100 & An array containing the templates that match a user's preferences \\ \hline
+	
+	\multirow{2}{*}{\parbox{2cm}{Global}}
+	& prefCount & integer & 1 & Counter for looping through userpreferences\\
+	& tagCount & integer &  1 & Counter for looping through the tags in a template\\ \hline
+	\multirow{4}{*}{\parbox{2cm}{SortByDate\newline SortByMaterial\newline SortByName}}
+		& sortedTillElement & integer & 1 & The index that the array is sorted up to. Starts at 0 (before the first element) \\
+		& largestpos & integer & 1 & the position of the largest element in the sub-array after index sortedTillElement \\ 
+		& upto & integer & 1 & the index of the element that the algorithm is currently checking \\
+		& nextUnsorted & integer & 1 & the index of the next unsorted element in the array \\ \hline
+
+\multirow{2}{*}{\parbox{2cm}{checkValidSPF}}
+& file & file (SPF) & 1 & the spf file to check \\
+& lineData & Array (Line) & 10000 & the lines that the spf file contains \\ \hline
+\end{longtable}
+\footnotetext{Length in elements}
+\section Algorithms
 
 \end{document}
 
