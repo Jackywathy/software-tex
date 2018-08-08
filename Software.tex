@@ -16,7 +16,14 @@
 \usepackage{fullpage}
 \usepackage[section]{placeins}
 \usepackage{multirow}
+\usepackage{listings}
+\usepackage{caption}
+
+
+
+
 \setlength{\headheight}{62pt}
+
 
 \lhead{L.A.M.P \\ Waxy LASER Solutions \\ Max Wharton-Jones, Shourov Quazi, Jack Jiang}
 \rhead{
@@ -591,7 +598,7 @@ Waxy LASER Solutions retains all intellectual property rights to the software. T
 \subsection{Select Template}
 \begin{longtable}{|p{3cm}|p{5cm}|p{4cm}|}	
 	\hline
-	\rowcolor{gray!25}
+	\rowcolor{gray!40}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
 	
 	\rowcolor{white}
@@ -615,7 +622,7 @@ Waxy LASER Solutions retains all intellectual property rights to the software. T
 \subsection{Design Template}
 \begin{longtable}{|p{3cm}|p{5cm}|p{4cm}|}	
 	\hline
-	\rowcolor{gray!25}
+	\rowcolor{gray!40}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
 	
 	\rowcolor{white}
@@ -669,7 +676,7 @@ Graphical Editor
 \subsection{Queue Job}
 \begin{longtable}{|p{5cm}|p{3cm}|p{4cm}|}	
 	\hline
-	\rowcolor{gray!25}
+	\rowcolor{gray!40}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
 	
 	\rowcolor{white}
@@ -693,7 +700,7 @@ Graphical Editor
 \subsection{Approve Job}
 \begin{longtable}{|p{3cm}|p{5cm}|p{4cm}|}	
 	\hline
-	\rowcolor{gray!25}
+	\rowcolor{gray!40}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
 	
 	\rowcolor{white}
@@ -722,7 +729,7 @@ Graphical Editor
 \subsection{Set Up Laser Cutter}
 \begin{longtable}{|p{3cm}|p{5cm}|p{4cm}|}	
 	\hline
-	\rowcolor{gray!25}
+	\rowcolor{gray!40}
 	\textbf{Input} & \textbf{Process}  & \textbf{Output} \\ \hline
 	
 	\rowcolor{white}
@@ -863,8 +870,38 @@ Graphical Editor
 & lineData & Array (Line) & 10000 & the lines that the spf file contains \\ \hline
 \end{longtable}
 \footnotetext{Length in elements}
-\section Algorithms
 
+
+
+\section{Algorithms}
+
+	\lstset{ %this is the stype
+	mathescape=true,
+	frame=tB,
+	numbers=left, 
+	numberstyle=\tiny,
+	basicstyle=\scriptsize, 
+	keywordstyle=\color{black}\bfseries\em,
+	stringstyle=\color{black}\itshape,
+	frame=single,
+	tabsize=4,
+	morestring=[b]",
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	keywords={BEGIN, END, SUB, IF, ELSE, END, CASEWHERE, CASE, MAIN, WHILE, NEXT, AND, OR, THEN, RETURN, NOT, REPEAT, UNTIL},
+	numbers=left,
+	%xleftmargin=.04\textwidth,
+	showstringspaces=false,
+	escapeinside={{\%}{\%}},
+	linewidth=\textwidth,
+%	commentstyle=\itshape\color{purple!40!black},pse
+	% this is to add specific settings to an usage of this environment (for instnce, the caption and referable label)
+}
+\lstinputlisting{pseudo.txt}
+
+\section[Screen Design Principals]{Screen Design Principals \footnote{Screen Design by Max}}
+
+hewwo
 \end{document}
 
 

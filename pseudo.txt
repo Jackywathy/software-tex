@@ -1,0 +1,830 @@
+BEGIN MAIN %\textbf{| Jack |}%
+	running is a boolean = true
+
+	%\underline{InitalizeDatastructures}%
+	%\underline{Login}%
+	%\underline{LoadTemplates}%
+	
+	WHILE running = true
+		%\underline{selectModule(Max)}%
+	END WHILE
+END MAIN
+
+BEGIN SUB selectModule %\textbf{| Max |}%
+	Get user selection
+	CASEWHERE user selection
+		Select Template : %\underline{selectTemplate}%
+		Design Template : %\underline{designTemplate}%
+		Queue Job : %\underline{queueJob}%
+		Submit Template : %\underline{submitTemplate}%
+		Approve Template : %\underline{approveTemplate}%
+		Approve Job(s) : %\underline{approveJob}%
+		Set up Laser Cutter : %\underline{setupLaser}%
+		Change Settings : %\underline{changeSetting}%
+    END CASEWHERE
+END SUB
+
+BEGIN SUB passwordIsStrong(password) %\textbf{| Shourov |}%
+    strong (boolean) = false
+    IF password contains numbers AND password.length >= 8 THEN
+        strong = true
+    END IF
+    RETURN strong
+END SUB
+
+BEGIN SUB validEmail(email) %\textbf{| Shourov |}%
+    IF email contains characters before a "@" symbol AND ends with "sbhs.nsw.edu.au" THEN
+        RETURN true
+    ELSE
+        RETURN false
+    END IF
+END SUB
+
+BEGIN SUB IsTeacherEmail(email) %\textbf{| Shourov |}%
+    IF first character of email is NOT a number THEN
+        RETURN true
+    ELSE
+        RETURN false
+    END IF
+END SUB
+
+BEGIN SUB Login %\textbf{| Max |}%
+    loggedIn = false
+    email = "" (string)
+    password = "" (string)
+    found = false (boolean)
+
+    get email, password
+    IF email = "" AND password = "" THEN
+        print "Please enter a Username and Password."
+        succeeded = false
+    ELSE
+        index = 1
+        WHILE index <= tblUsers.length AND found <> true
+            IF tblUsers(index).email = email THEN
+                found = true
+                IF tblUsers(index).password = password THEN
+                    loggedIn = true
+                    print "login successful"
+                ELSE
+                    loggedIn = false // wrong password!
+                    print "Wrong password!"
+                END IF
+            END IF
+            index = index + 1
+        END WHILE
+        IF found <> true THEN
+        	print "email not found, please sign up"
+ 		END IF    
+    END IF
+
+    RETURN loggedIn
+END SUB
+
+BEGIN SUB SortTemplates(type) %\textbf{| Shourov |}%
+	CASEWHERE type
+		'date': %\underline{SortByDate}%
+        'material': %\underline{SortByMaterial}%
+        'name': %\underline{SortByName}%
+        otherwise : print "Invalid type supplied for sort!"
+    END CASE
+END SUB
+
+BEGIN SUB SignUp %\textbf{| Max |}%
+    failed = false (boolean)
+    email = "" (string)
+    password = "" (string)
+    name = "" (string)
+
+    Get email, password, name from user input 
+    IF email = "" OR password= "" OR name = "" THEN
+        display "Enter an email, password and name"
+        failed = true
+    END IF
+
+	IF failed <> true THEN
+		IF %\underline{validEmail(email)}% = true THEN
+			IF %\underline{IsTeacherEmail(email)}% = true THEN
+				accesslevel = 1
+			ELSE
+				accesslevel = 0
+			END IF
+		ELSE
+			failed = true
+			display "Invalid email address!"
+		END IF
+	END IF
+
+	IF failed <> true THEN
+		IF %\underline{passwordIsStrong(password)}% = true THEN
+			IF %\underline{CreateUser(email, password, name, accesslevel)}% = true THEN
+				%\underline{Login}%
+			ELSE
+				failed = true
+				print "error creating account"
+			END IF
+		ELSE
+			print "password must be 8 characters or longer, and contain numbers and text"
+            failed = true
+        END IF
+    END IF
+
+    succeed (Boolean)  = true
+    IF failed = true THEN
+        succeed = false 
+    ELSE
+    	%\underline{RefreshDatabases}%
+    	// Refresh database so new user is added to tblUsers
+    END IF
+
+    RETURN succeed
+END SUB
+
+
+BEGIN SUB CreateUser(email, password, name, accesslevel) %\textbf{| Jack |}%
+	succeeded = true (boolean)
+	IF %\underline{SearchForUser(email)}% = false THEN
+		// check that the user is not in the database already
+        Open UsersDatabase for relative access
+		Write email to UsersDatabase.email
+		
+		Write password UsersDatabase.password
+		Write name to UsersDatabase.name
+		Write accesslevel to UsersDatabase.accesslevel
+		
+		Close UsersDatabase
+		%\underline{RefreshDatabases}%
+    ELSE
+        succeeded = false
+        print "email already used!"
+    END IF
+    RETURN succeeded 
+END SUB
+
+
+BEGIN SUB SearchForUser(email) %\textbf{| Jack |}%
+    index = 1
+    found (boolean) = false
+    
+	WHILE index <= tblUsers.length AND found <> true
+		IF tblUsers(index).email = email THEN
+			found = true
+		END IF 
+		index = index + 1
+	END WHILE
+	RETURN found
+END SUB
+
+BEGIN SUB LoadTemplates %\textbf{| Jack |}%
+	IF loggedIn <> true THEN
+        %\underline{Login}%
+    END IF
+
+    IF loggedIn = true THEN //loggedIn will be set to true of Login is successful
+		%\underline{RefreshDatabases}%
+	ELSE
+		Print "You must login to access the templates"
+	END IF
+END SUB
+
+BEGIN SUB InitalizeDatastructures %\textbf{| Jack |}%
+	TemplateRecord is a record containing 
+		Auto_id (integer)
+        DXF (string) // this contains all the line data on the template
+        tags (Array(string)) //list of categories that apply to the temp
+        material (string) // the material the template is to be cut on
+        length (Integer)            
+        height (Integer)
+        thickness (Integer)
+        preview (Array(Image)) // preview images of the template. Optional
+        creatorName (string)
+        creator_id (Integer)
+        approverName (string)
+        approver_id (Integer)
+        complete (boolean)
+        dynamicTextLabel (Array(Of String))
+        textLocation (Array(Of Point))
+	END TemplateRecord
+	
+	JobRecord is a record containing
+		Auto_id (integer)
+		template (TemplateRecord)
+		submitterName (string)
+		submitterID (Integer)
+		approverName (string)
+		approverID   (Integer)
+		approved (boolean)
+		submitDate (date)
+	END JobRecord 
+	
+	UserRecord is a record containing
+		Auto_id (integer)
+		email    (string)
+		password (string)
+		accesslevel (string)
+		name (string)
+	END UserRecord
+	// database tables
+	tblTemplates is an array of TemplateRecord indexed from 1 to EOF
+	tblSubmittedJobs is an array of JobRecord indexed from 1 to EOF
+	tblUsers is an array of UserRecord indexed from 1 to EOF
+	tblUnApprovedTemplates is an array of TemplateRecord indexed from 1 to EOF
+	%\underline{RefreshDatabases}%
+
+	UserTags is an array of string indexed from 1 to EOF
+	CurrentUser (UserRecord) =  null
+	Tool = ""  (string) // currently selected tool
+	loggedIn = false (boolean)
+	USER = 0 (constant integer)
+	TEACHER = 1 (constant integer)
+	ADMIN = 2 (constant integer
+	sortBy = "date" (string)
+END SUB
+
+BEGIN SUB RefreshDatabases %\textbf{| Jack |}%
+	Open AllDatabases for sequential reading
+	Get tblTemplates, tblSubmittedJobs, tblUsers, tblUnApprovedTemplates
+	%\underline{FilterTemplates}%
+	%\underline{SortTemplates(sortBy)}%
+
+    Close AllDatabases
+END SUB
+
+// Templates can be filtered according to criteria, stored in the tags 
+// on the template item
+BEGIN SUB FilterTemplates %\textbf{| Jack |}%
+	MatchingTemplates is an array of TemplateRecord indexed from 1 to EOF
+	currentTemplate = null (TemplateRecord)
+	index = 1 (integer)
+	
+	WHILE index <= tblTemplates.Length
+		currentTemplate = tblTemplates(index)
+		IF %\underline{TagIsPresent(currentTemplate)}% = true THEN 
+			Append current to MatchingTemplates
+		END IF
+		index = index + 1
+	END WHILE
+	tblTemplates = MatchingTemplates 
+END SUB
+
+BEGIN SUB TagIsPresent(template) %\textbf{| Jack |}%
+    // check if one of the tags in UserPreferences
+    prefCount = 1 (integer)
+    tagCount = 1 (integer)
+    found = false (boolean)
+    usertag = "" (string)
+    currentTag = "" (string)
+    // loop through each element in preferences, and check it with each
+    // tag in the template
+    WHILE prefCount <= UserPreferences.length AND found <> true
+        tagCount = 1
+        userTag = UserPreferences(prefCount)
+        WHILE tagCount <= template.tags.length AND found <> true
+        	currentTag = template.tags(tagCount)
+        	IF currentTag = userTag THEN
+        		found = true
+        	END IF
+        	tagCount  = tagCount + 1
+        	END WHILE
+        END WHILE
+    RETURN found
+END SUB
+
+BEGIN SUB SortByDate %\textbf{| Jack |}%
+	// sorts tblTemplates by submitted date, from latest to oldest
+	// (descending) how much of the list is sorted, so we don't resort it
+	// as it is already in descending order
+	
+	sortedTillElement = 0 (Integer)
+	
+	temp = null (TemplateRecord)
+	current = null (TemplateRecord)
+	
+	// the location of the largest item in the list
+	largestpos = 1 (integer)
+	
+	// what element the sort is at
+    upto = 1 (integer)
+
+    // the next element that is unsorted
+    nextUnsorted = 1 (integer)
+
+    // selection sort : will continually find the largest item in the list 
+    // and move it to the right position till the entire list is sorted
+    WHILE sortedTillElement <= tblTemplates.length
+        // set upto to the first element that is not sorted yet
+        upto = sortedTillElement + 1
+    
+        // assume largest item is on the first element to be tested
+        largestpos = upto
+
+        WHILE upto <= tblTemplates.length
+            current = tblTemplates(upto)
+
+            IF current.date > tblTemplates(largestpos).date THEN
+                // found newer largest item!
+                largestpos = upto
+            END IF
+            upto = upto + 1
+        END WHILE
+
+        // largestpos is now the index of the largest element 
+        // swap it with the next unsorted item
+        nextUnsorted = sortedTillElement + 1
+
+        temp = tblTemplates(next)
+        tblTemplates(next) = tblTemplates(largest)
+        tblTemplates(largest) = temp
+        sortedTillElement = sortedTillElement + 1
+    END WHILE
+END SUB
+
+BEGIN SUB SortByMaterial %\textbf{| Shourov |}%
+    // sorts tblTemplates by submitted material 
+    // (descending) how much of the list is sorted, so we don't resort it
+    // as it is already in descending order
+
+    sortedTillElement = 0 (Integer)
+    
+    temp = null (TemplateRecord)
+    current = null (TemplateRecord)
+
+// the location of the largest item in the list
+    largestpos = 1 (integer)
+
+    // what element the sort is at
+    upto = 1 (integer)
+
+    // the next element that is unsorted
+    nextUnsorted = 1 (integer)
+
+    // selection sort : will continually find the largest item in the list 
+    // and move it to the right position till the entire list is sorted
+    WHILE sortedTillElement <= tblTemplates.length
+        // set upto to the first element that is not sorted yet
+        upto = sortedTillElement + 1
+    
+        // assume largest item is on the first element to be tested
+        largestpos = upto
+
+        WHILE upto <= tblTemplates.length
+            current = tblTemplates(upto)
+
+            IF current.material > tblTemplates(largestpos).material THEN
+                // found newer largest item!
+                largestpos = upto
+            END IF
+            upto = upto + 1
+        END WHILE
+
+        // largestpos is now the index of the largest element 
+        // swap it with the next unsorted item
+        nextUnsorted = sortedTillElement + 1
+
+        temp = tblTemplates(next)
+        tblTemplates(next) = tblTemplates(largest)
+        tblTemplates(largest) = temp
+        sortedTillElement = sortedTillElement + 1
+    END WHILE
+END SUB
+
+BEGIN SUB SortByName %\textbf{| Shourov |}%
+    // sorts tblTemplates by submitted tags 
+	// (descending) how much of the list is sorted, so we don't resort it
+	// as it is already in descending order
+    sortedTillElement = 0 (Integer)
+    
+    temp = null (TemplateRecord)
+    current = null (TemplateRecord)
+
+	// the location of the largest item in the list
+    largestpos = 1 (integer)
+
+    // what element the sort is at
+    upto = 1 (integer)
+
+    // the next element that is unsorted
+    nextUnsorted = 1 (integer)
+
+    // selection sort : will continually find the largest item in the list 
+    // and move it to the right position till the entire list is sorted
+    WHILE sortedTillElement <= tblTemplates.length
+        // set upto to the first element that is not sorted yet
+        upto = sortedTillElement + 1
+    
+        // assume largest item is on the first element to be tested
+        largestpos = upto
+
+        WHILE upto <= tblTemplates.length
+            current = tblTemplates(upto)
+
+            IF current.tags(1) > tblTemplates(largestpos).tags(1) THEN
+                // found newer largest item!
+                largestpos = upto
+            END IF
+            upto = upto + 1
+        END WHILE
+
+        // largestpos is now the index of the largest element 
+        // swap it with the next unsorted item
+        nextUnsorted = sortedTillElement + 1
+
+        temp = tblTemplates(next)
+        tblTemplates(next) = tblTemplates(largest)
+        tblTemplates(largest) = temp
+        sortedTillElement = sortedTillElement + 1
+    END WHILE
+END SUB
+
+BEGIN SUB PrintJobDetails(job) %\textbf{| Shourov |}%
+    Initialize Printer Driver
+    print "Job ID: ", job.id
+    print "Date, time", job.time
+    print "Submitter: ", job.submitter, "Approver:", job.approver
+    print "Dimensions: " job.jobWidth, "x", job.jobHeight
+    Close Printer Driver
+END SUB
+
+BEGIN SUB SelectTemplate %\textbf{| Shourov |}%
+    %\underline{LoadTemplates}%
+    Display tblTemplates on GUI
+    selectedTemplate = null (TemplateRecord)
+    get selectedTemplate
+    Display %\underline{inputForm(size of selectedTemplate.dynamicTextLabel)}%
+    dynamicText = empty (array(string))
+    dynamicText = data from inputForm
+    selectedTemplate.dynamicTextLabel = dynamicText
+    Send selectedTemplate to queueJob
+END SUB
+
+BEGIN SUB inputForm(rows) %\textbf{| Shourov |}%
+    Display input table with num Rows
+END SUB
+
+BEGIN SUB scrollC %\textbf{| Max |}%
+    Tool = "Move Screen"
+    //Moves the Field of the designer
+    REPEAT
+        CASEWHERE mouse Moves:
+            Increased x: Design Field moves down by the same amount
+            Decreased x: Design Field moves up by the same amount
+            Increased y: Design Field moves left by the same amount
+            Decreased y: Design Field moves right by the same amount
+		END CASE
+	UNTIL user releases middle click
+END SUB
+
+BEGIN SUB rightC %\textbf{| Max |}%
+    IF user clicks Line THEN
+    	Ask user for linetype
+        //(Cut, Raster, Vector, Includes descriptions of each)
+        CASEWHERE user selection is
+        	Cut: linesCollection(lineNumber).lines.lineType = "Cut"
+        	Vector: linesCollection(lineNumber).lines.lineType = "Vector"
+        	Raster: linesCollection(lineNumber).lines.lineType = "Raster"
+        END CASEWHERE
+	END IF
+END SUB
+
+BEGIN SUB designTemplate %\textbf{| Max |}%
+    lineIndex is an integer = 1
+    REPEAT
+        lines is a Record containing:
+            x1 (Integer)
+            y1 (Integer)
+            x2 (Integer)
+            y2 (Integer)
+            lineType (string)
+            color (string)
+            lineNumber (Integer)
+    	END lines
+        linesCollection is an Array of lines indexed from 1 to EOF
+    	CASEWHERE user selection is
+			Straight line: %\underline{drawStr}%
+			Free line: %\underline{drawFree}%
+			Edit Logo: %\underline{editLogo}%
+			Edit Text: %\underline{editText}%
+			New Object: %\underline{newObj}%
+			Select Parts: %\underline{partSelect}%
+			Line Type: %\underline{lineType}%
+			Move: %\underline{move}%
+			Left Click: %\underline{leftC}%
+			Right Click: %\underline{rightC}%
+			Middle Mouse:  %\underline{scrollC}%
+		END CASEWHERE
+		Tool = ""
+	UNTIL Done = True
+	%\underline{genImg}%
+END SUB
+ 
+
+BEGIN SUB moveScreen %\textbf{| Max |}%
+    Tool = "Move"
+    //Moves the Field of the designer
+    IF left click is pressed THEN
+        REPEAT
+            CASEWHERE mouse Moves:
+                Increased x:Design Field moves down by the same amount
+                Decreased x: Design Field moves up by the same amount
+                Increased y:Design Field moves left by the same amount
+                Decreased y:Design Field moves right by the same amount
+            END CASEWHERE
+        UNTIL user releases left click
+    END IF
+END SUB
+
+BEGIN SUB partSelect %\textbf{| Max |}%
+    Tool = "Select Part"
+    %\underline{leftC}%
+END SUB
+
+BEGIN SUB leftC %\textbf{| Max |}%
+	Highlight ends of clicked line
+	WHILE mouse is hovering over line
+        Display co-ordinates of Line ends next to mouse
+    END WHILE
+    IF left click is pressed AND a line is selected THEN
+    // Moves the line
+    	REPEAT
+    		CASEWHERE mouse Moves:
+                Increased x: Line moves up by the same amount
+                Decreased x: Line moves down by the same amount
+                Increased y: Line moves right by the same amount    
+                Decreased y: Line moves left by the same amount
+            END CASEWHERE
+        UNTIL Left click is released
+    END IF
+    
+    IF left click is pressed AND a logo is selected THEN
+    	// move the logo
+    	REPEAT
+        	CASEWHERE mouse Moves:
+            	Increased x: Logo moves up by the same amount
+                Decreased x: Logo moves down by the same amount
+				Increased y: Logo moves right by the same amount    
+				Decreased y : Logo moves left by the same amount
+			END CASEWHERE
+		UNTIL Left click is released
+	END IF
+	
+	IF left click is pressed AND a TextBox is selected THEN
+        // move the logo
+        REPEAT
+            CASEWHERE mouse Moves:
+                Increased x: TextBox moves up by the same amount
+                Decreased x: TextBox moves down by the same amount
+                Increased y: TextBox moves right by the same amount    
+                Decreased y: TextBox moves left by the same amount
+			END CASEWHERE
+		UNTIL Left click is released
+    END IF
+END SUB
+
+BEGIN SUB lineType %\textbf{| Max |}%
+    Tool = "Line Type"
+    IF user left Clicks on a Line Segment THEN
+        CASEWHERE user selection is
+            Cut: linesCollection(lineNumber).lines.lineType = "Cut"
+            Vector: linesCollection(lineNumber).lines.lineType = "Vector"
+            Raster: linesCollection(lineNumber).lines.lineType = "Raster"
+		END CASEWHERE
+	END IF
+END SUB
+
+BEGIN SUB newObj %\textbf{| Max |}%
+    Get user input
+    // Logo, text Box, Line
+    CASEWHERE User selection is
+        Logo: Create a logo in Design Field with center at Mouse coordinates
+        Text Box: Create a Text Box in Design Field with center at mouse coordinates
+        Line: %\underline{drawStr}%
+    END CASEWHERE
+END SUB 
+
+BEGIN SUB editText %\textbf{| Max |}%
+    IF User left clicks Text box THEN
+        Get user input (String)
+    END IF
+    Textbox.Text = user input
+END SUB
+
+BEGIN SUB editLogo %\textbf{| Max |}%
+    REPEAT
+        Access = "Denied" (String)
+    	Ask user for a logo
+        Prompt File viewer
+        IF the File is a PNG OR the file is a JPEG OR the File is a JPG THEN
+            File = "Approved"
+        ELSE
+            Deny
+    	END IF
+	UNTIL File = "Approved"
+END SUB
+
+BEGIN SUB drawFree %\textbf{| Max |}%
+    Ask user for linetype
+    //(Cut, Raster, Vector, Includes descriptions of each)
+    Tool = "Free Line"
+    freeTimer = 0 (integer)
+    IF user clicks Left Click THEN
+        REPEAT
+        	linesCollection(lineIndex).lines.x1 = mouse position x in Design Field
+        	linesCollection(lineIndex).lines.y1 = mouse position y in  Design Field
+            freeTimer = freeTimer + 1
+            Wait 0.01 Seconds
+            linesCollection(lineIndex).lines.x2 = mouse position x in Design Field
+            linesCollection(lineIndex).lines.y2 = mouse position y in Design Field
+            lineIndex = lineIndex + 1
+        UNTIL Left Click is released
+    END IF
+END SUB
+
+BEGIN SUB drawStr %\textbf{| Max |}%
+	Ask user for linetype
+    //(Cut, Raster, Vector, Includes descriptions of each)
+    Tool = "straightLine"
+    IF User clicks left mouse AND Tool = straightLine THEN
+    	linesCollection(lineIndex).lines.x1 = mouse position x in Design Field
+        linesCollection(lineIndex).lines.y1 = mouse position y in Design Field
+        IF user clicks left mouse THEN 
+        	linesCollection(lineIndex).lines.x2 = mouse position x in Design Field
+        	linesCollection(lineIndex).lines.y2 = mouse position y in Design Field
+        ELSE
+        	linesCollection(lineIndex).lines.x1
+        	linesCollection(lineIndex).lines.y1
+        	lineIndex = lineIndex - 1
+        END IF
+    END IF
+    lineIndex = lineIndex + 1
+END SUB
+
+BEGIN SUB genIMG %\underline{| Max |}%
+    Prompt File viewer
+    Load Ai File
+    Take image from Ai Logo
+    Use image as icon for file in file viewer
+END SUB
+
+BEGIN SUB checkValidSPF(file) %\textbf{| Shourov |}%
+    Open file for sequential reading
+    lineData = null (Array of line, from 0 to EOF)
+    get lineData from file
+    
+    valid = true
+    index = 1
+    WHILE lineData.Length <= index AND valid <> false
+        IF lineData(index).color <> "RED" AND lineData(index).color <> "BLUE" AND lineData(index).color <> "BLACK" THEN
+        	valid = false
+        	print "Lines must be red, black or blue"
+        END IF
+        index = index + 1
+    END WHILE
+    close file
+    RETURN valid
+END SUB 
+
+BEGIN SUB queueJob %\textbf{| Jack |}%
+	IF loggedIn = false THEN
+   		%\underline{Login}%
+    END IF
+    currentDate = null (date)
+    get currentDate
+    IF loggedIn = true AND CurrentUser.accesslevel >= TEACHER THEN
+    	// teacher/admin, and logged in
+    	Get SPF file
+    	IF file.complete = true AND checkValidSPF(file) = true THEN
+    		// send it
+    		Open JobsDatabase for relative access
+    		write file to JobsDatabase.template
+    		write CurrentUser.name to JobsDatabase.submitterName
+    		write CurrentUser.Auto_ID to JobsDatabase.submitterID
+    		write "" to JobsDatabase.approverName 
+    		write -1 to JobsDatabase.approverID
+    		write false to JobsDatabase.approved
+    		write currentDate to JobsDatabase.submitDate
+    		Close JobsDatabase
+    		%\underline{RefreshDatabases}%
+    	ELSE
+    		print "File is incomplete, or contains errors"
+    	END IF
+    ELSE
+    	print "Only teachers/administrators can submit jobs"
+    END IF                            
+END SUB
+
+BEGIN SUB submitTemplate %\textbf{| Jack |}%
+	%\underline{LoadTemplates}%\\
+	templatefile = null (SPF file)
+    get templateFile    
+    IF loggedIn <> true THEN
+        %\underline{Login}%
+    END IF
+    IF loggedIn = true AND CurrentUser.accesslevel >= TEACHER THEN
+        Open unapprovedTemplateDatabase
+        write templateFile to unapprovedTemplateDatabase
+        Close unapprovedTemplateDatabase
+    ELSE
+        print "please login to submit templates"
+    END IF
+END SUB
+
+BEGIN SUB approveJob %\textbf{| Jack |}%
+	IF loggedIn = false THEN
+		%\underline{Login}%
+	END IF
+	
+	selectedJob = null (JobRecord)
+	confirmation = false (boolean)
+	
+	IF loggedIn = true AND CurrentUser.accesslevel >= ADMIN THEN
+		// admin, and logged in
+		display tblSubmittedJobs
+		get selectedJob
+		print "Approve job?"
+		get confirmation
+		IF confirmation = true THEN
+			print "Do you want to print job details to paper?"
+			get confirmation
+			IF confirmation = true THEN
+				%\underline{PrintJobDetails(selectedJob)}%
+			END IF
+			selectedJob.approverName = CurrentUser.name
+			selectedJob.approverID = CurrentUser.Auto_ID
+			selectedJob.approved = true
+		ELSE
+			print "Cancelled"
+		END IF
+	ELSE
+		print "Only administrators can approve jobs"
+	END IF
+END SUB
+
+BEGIN SUB setupLaser %\textbf{| Shourov |}%
+    Initialize Laser Driver
+    Process SPF file as DXF file in lasercutter printer
+    Close Laser Driver
+END SUB
+
+BEGIN SUB ChangeSort(criteria) %\textbf{| Shourov |}%
+    CASEWHERE criteria
+    	date: sortBy = "date"
+    	material: sortBy = "material"
+    	name: sortBy = "name"
+        otherwise: print "Invalid criteria"
+    END CASE
+END SUB
+
+BEGIN SUB changeSettings %\textbf{| Shourov |}%
+    CASEWHERE userinput
+        add category: AddTag(tag)
+        remove category: RemoveTag(tag)
+        change sort: ChangeSort(criteria)
+        otherwise: print "invalid input"
+    END CASE
+END SUB
+ 
+BEGIN SUB approveTemplate %\textbf{| Jack |}%
+	IF loggedIn = false
+    	%\underline{Login}%	
+	END IF
+	selectedTemplate = null (JobRecord)
+	confirmation = false (boolean)
+
+	IF loggedIn = true AND CurrentUser.accesslevel >= ADMIN THEN
+		// admin, and logged in
+		display tblUnapprovedTemplates
+		get selectedTemplate
+		
+		print "Approve template?"
+		get confirmation
+		IF confirmation = true THEN
+			delete selectedTemplate from tblUnapprovedTemplates
+			append selectedTemplate to tblTemplates    
+        ELSE
+            print "Cancelling"
+        END IF
+    ELSE
+    	print "Only administrators can approve templates"
+    END IF
+END SUB
+
+BEGIN SUB AddTag(tag) %\textbf{| Shourov |}%
+    // add a category to the user settings
+    UserTags(UserTags.length+1) = tag
+END SUB
+
+BEGIN SUB RemoveTag(tag) %\textbf{| Shourov |}%
+    // remove a category to the user settings
+    index = 1
+    found = false
+    WHILE index <= UserTags.length AND found <> true THEN
+        IF UserTags(count) = tag THEN
+            delete index field from UserTags
+            found = true
+        END IF
+        index = index + 1
+    END WHILE
+    IF found <> true THEN
+        print "Cannot find tag"
+    END IF
+END SUB 
