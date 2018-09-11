@@ -31,6 +31,9 @@
 	urlcolor=black
 }
 
+
+
+
 \setlength{\headheight}{62pt}
 
 
@@ -140,7 +143,7 @@ Before laser cutting, the file must be checked manually by staff to ensure for c
 	
    \hline
    \rowcolor{gray!50}
-   \textbf{Needs} & \textbf{Objectives} \\
+   \textbf{Needs} & \textbf{Objectives} \\ \hline
    
    Must store $>50$ different records & 
 	\begin{itemize}
@@ -150,6 +153,8 @@ Before laser cutting, the file must be checked manually by staff to ensure for c
 	\item Store fonts and different shapes 
 	
 	\end{itemize} \\ \hline
+
+	
 	
 	An editor to create templates & A drag and drop interface supporting
 	\begin{itemize}
@@ -909,19 +914,39 @@ Graphical Editor
 
 \section[Screen Design Principals]{Screen Design Principals \footnote{Screen Design by Max}}
 % hewwo this is a storyboard %
-\subsection{Philosophy}
+
 Functionality was the main focus of this program, and thus sacrifices were made in terms of the user interface, to accommodate a high number of functions and options per screen.
 \subsubsection{Aesthetics and Clarity}
-+ Ensuring information is presented in an organised and predictable manner $\dashleftarrow$ using groupings and clear alignments
-+ As much content on each screen without too much clutter, organised with group boxes
-+ Easy to read fonts and non-intrusive colour scheme using neutral or cool colours
-+ Simple colour palettes
-+ No unnecessarily colourful or large icons in menus
+\begin{itemize}
+	\itemsep0em
+	\item Ensuring information is presented in an organised and predictable manner - using groupings and clear alignments
+	\item As much content on each screen without too much clutter, organised with group boxes
+	\item Easy to read fonts and non-intrusive colour scheme using neutral or cool colours
+	\item Simple colour palettes
+	\item No unnecessarily colourful or large icons in menus
+\end{itemize}
+
+\subsubsection{Consistency}
+\begin{itemize}
+	\itemsep0em
+	\item Persistent navigation menu on the top provides easy access to all functions
+	\item Similar look across all modules, purple/aqua toolbar at top.
+	\item One font is used throughout the interface, Arial. This also ensures clarity between the different elements that are on the screen.
+\end{itemize}
+
+\subsubsection{Control}
+\begin{itemize}
+	\itemsep0em
+	\item Most functions of the program are visible on the toolbar.
+	\item Elements are responsive and actions that take longer than a few seconds present a loading screen or other indication of loading.
+	\item Most elements in the solution can be navigated with the tab key to reduce mouse movement and to speed up tasks such as logging in.
+	\item F pattern design - elements are placed left to right, then top to bottom to maximise visibility of important elements and to highlight more useful or critical controls at the top of the screen.
+\end{itemize}
 
 \centering
 \subsection{Storyboard}
 \begin{figure}[H]
-\includegraphics[width=0.8\textwidth]{sd1.png}
+\includegraphics[width=0.8\textwidth]{storyboard.png}
 \caption{The storyboard, showing connected screens}
 \end{figure}
 
@@ -930,15 +955,15 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 % this is the login screen
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{sd2.png}
+\includegraphics[width=0.7\textwidth]{screen/login.png}
 \caption{The Login Screen was created with simplicity in mind, and so the only things on the screen upon the start-up are the logo and the textboxes that you login with. The form uses a light grey background colour, which is consistent throughout all the forms of the program.}
 \end{figure}
 
-\subsection{Sign Up]}
+\subsection{Sign Up}
 % sign up screen
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{sd3.png}
+	\includegraphics[width=0.7\textwidth]{screen/signup.png}
 	\caption{This screen contains only text boxes and labels to guide the user as to how to sign up and create an account.}
 \end{figure}
 
@@ -946,85 +971,337 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 % home screen
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{sd4.png}
+	\includegraphics[width=0.7\textwidth]{screen/home.png}
 	\caption{This screen has a toolbar which is also consistent throughout the program. It also contains links to the other forms }
 \end{figure}
 
-\subsection{Create New Design}
+\subsection{Create New Template}
 % Design screen
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{sd5.png}
-	\caption{}
+	\includegraphics[width=0.7\textwidth]{screen/newtemplate.png}
+	\caption{This screen allows users to create new templates, which can be stored in a database or exported to a .spf file}
 \end{figure}
 
-\subsection{Home Screen}
-% this is the login screen
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{sd4.png}
-	\caption{This screen has a toolbar which is also consistent throughout the program. It also contains links to the other forms }
-\end{figure}
-
-\subsection{Create New Design}
+\subsection{View Templates}
 % Design screen
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{sd5.png}
-	\caption{}
+	\includegraphics[width=0.7\textwidth]{screen/templateviewer.png}
+	\caption{This screen allows users to search and sort the database for templates}
 \end{figure}
 
-\subsection{Create New Job}
-% Design screen
+\subsection{Create Job (1/2)}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{sd6.png}
-	\caption{}
+	\includegraphics[width=0.7\textwidth]{screen/createjob.png}
+	\caption{Once a template is selected, a user can choose the number of templates required. The grid allows easy manipulation of text that will be placed on the template in the next step}
 \end{figure}
 
-\subsection{View Jobs}
+\subsection{Create Job (2/2)}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{sd7.png}
-	\caption{}
+	\includegraphics[width=0.7\textwidth]{screen/submitjob.png}
+	\caption{The output and number of sheets required are shown on this screen, as long as options to export the job to the database or as a local file}
 \end{figure}
 
-\subsection{View Designs}
+\subsection{View Orders}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{sd8.png}
-	\caption{}
+	\includegraphics[width=0.7\textwidth]{screen/vieworders.png}
+	\caption{Allows user to view the currently available orders}
 \end{figure}
 
-\subsection{Admin Tools}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{sd9.png}
-	\caption{}
-\end{figure}
-
-\subsection{Approve/Reject Templates}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{sd10.png}
-	\caption{}
-\end{figure}
 
 
 \subsection{Dialogs}
 \begin{figure}[H]
 	\centering
 	\subsubsection{Help}
-	\includegraphics[width=0.5\textwidth]{dialog1.png}
+	\includegraphics[width=0.5\textwidth]{screen/help.png}
 	\caption{The help dialog informs the user how to use tooltips  and provides a link to the user manual}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\subsubsection{About}
-	\includegraphics[width=0.5\textwidth]{dialog2.png}
-	\caption{The about dialog provdes information about the program along with relevant copyright and licensing terms}
+	\includegraphics[width=0.5\textwidth]{screen/about.png}
+	\caption{The about dialog provides information about the program along with relevant copyright and licensing terms}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\subsubsection{Logout}
+	\includegraphics[width=0.5\textwidth]{screen/logout.png}
+	\caption{This logout box provides feedback to the user when the logout button is pressed}
+\end{figure}
+
+
+
+\chapter{Testing and Evaluating the Solution}
+\section{Test Data}
+\subsection{Login}
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Username} & \textbf{Password} & \textbf{Save Details} & \textbf{Expected Results} & \textbf{Reason}\\ \hline
+	Valid Guest Username - “guest0” & Corresponding Password & Yes & Guest logs in and credentials are saved for login next time. Access level 0 & Valid credentials were entered and the login details were saved \\ \hline
+	
+	Valid User Username - “user1” & Corresponding Password & No & Student Logs in and credentials are not saved for login next time. Access level 1 &  Valid credentials were entered and the login details were not told to be saved \\ \hline
+	
+Valid Teacher Username - “teacher1” & 	Corresponding Password & Yes & Student logs in and credentials are saved for login next time. Access level 2 & Valid credentials were entered and the login details were saved \\ \hline
+
+Valid Admin Username & Corresponding Password & No & Admin Logs in and credentials are saved for login next time. Access level 3 & Valid credentials were entered and the login details were not told to be saved \\ \hline
+
+Valid Username & Invalid Password & No & Invalid Credentials Error popup & Invalid password was given \\ \hline
+
+Invalid Username “-qeirj92-fikfl” & Invalid Password & No & Invalid Credentials. Error popup & Invalid username was given \\ \hline
+	
+\end{longtable}
+
+\subsection{View Template / Add Template}
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Selected Template} & \textbf{Field} & \textbf{Input} & \textbf{Expected Results} & \textbf{Reason}\\ \hline
+	
+	Template1 & Name & Template2 & Confirmation box followed by confirmation of change & User has submitted a valid change to the template, hence updating the template in the database \\ \hline
+	
+	Template1 & Name & "" & Error message indicating invalid input as well as visual indication of the offending field & User has submitted an invalid change to the template, hence the program will not allow submission until changes are validated \\ \hline
+	
+	Template1  & Thickness & 2 & Confirmation box followed by confirmation of change & User has submitted a valid change to the template, hence updating the template in the database \\ \hline
+	
+	Template1 & Thickness & two &Error message indicating invalid input as well as visual indication of the offending field & User has submitted an invalid change to the template, hence the program will not allow submission until changes are validated \\ \hline
+\end{longtable}
+
+
+\subsection{View Template / Add Tags  AND NewTemplate / Add Tags}
+\begin{longtable}{|p{3cm}|p{6cm}|p{6cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Input} &  \textbf{Expected Results} & \textbf{Reason} \\ \hline
+	
+	Wood & Tag is added to the template and is seen under the tags table & Tag is valid and is added to the template file \\ \hline
+	
+	"" & Tag is not added to the template and an error message is supplied & Tag is invalid and hence will not be added to the template \\ \hline
+\end{longtable}
+
+\subsection{New Order}
+\begin{longtable}{|p{3cm}|p{3cm}|p{4.5cm}|p{4.5cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Field} & \textbf{Input} &  \textbf{Expected Results} & \textbf{Reason} \\ \hline
+	
+	Add Tags & Grid Viewer shows all templates with a tag including “Wood” in them & Input tag is valid and hence the database shown is limited to the input tag \\ \hline
+	
+	Add Tags & "" & Error message is shown indicating tag cannot be empty & Input tag is invalid and hence feedback is given to the user to validate the tag \\ \hline
+	
+\end{longtable}
+
+\subsection{New Job}
+\begin{longtable}{|p{3cm}|p{3cm}|p{4.5cm}|p{4.5cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Field} & \textbf{Input} &  \textbf{Expected Results} & \textbf{Reason} \\ \hline
+	
+	Number Of Jobs & 3 & Number is updated to indicated number of jobs & Input is valid and hence the number of drawings generated in the job is increased to the input amount \\ \hline
+	
+	Number Of Jobs & three & Visual indicator of invalid input & Input is invalid and hence a visual indication is generated to indicate the corrupting field. \\ \hline
+	
+\end{longtable}
+
+\subsection{New Job Boundaries (Optional)}
+\begin{longtable}{|p{3cm}|p{3cm}|p{4.5cm}|p{4.5cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Dynamic Text} & \textbf{Input} &  \textbf{Expected Results} & \textbf{Reason} \\ \hline
+	
+	Name & John Doe &Dynamic Text is seen on table & Dynamic Text has been added by the user for the given job \\ \hline
+	
+\end{longtable}
+
+\subsection{Add New User / Edit User}
+\begin{longtable}{|p{3cm}|p{3cm}|p{4.5cm}|p{4.5cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Field} & \textbf{Input} &  \textbf{Expected Results} & \textbf{Reason} \\ \hline
+	
+	Username & John Doe &	Field is updated with input &	Input is valid and is added to the user file \\ \hline
+	Username &	“” &	A red marker is generated to indicate an error.	& Input is invalid and a visual error is generated to indicate the offending field \\ \hline
+	Password & password123 & Field is updated with input & Input is valid and is added to the user file \\ \hline
+	Password & “” & A red marker is generated to indicate an error. & Input is invalid and a visual error is generated to indicate the offending field \\ \hline
+	Name & John	& Field is updated with input &Input is valid and is added to the user file \\ \hline
+	Name & “” & A red marker is generated to indicate an error. & Input is invalid and a visual error is generated to indicate the offending field \\ \hline
+	Email &johndoe@email.com & Field is updated with input & Input is valid and is added to the user file \\ \hline
+	Email & “” & A red marker is generated to indicate an error. & Input is invalid and a visual error is generated to indicate the offending field \\ \hline
+	Email & johndoeemail & A red marker is generated to indicate an error. & Input is invalid and a visual error is generated to indicate the offending field \\ \hline
+	Email & johndoe@email & A red marker is generated to indicate an error. & Input is invalid and a visual error is generated to indicate the offending field \\ \hline
+	
+
+	
+	
+	
+\end{longtable}
+
+\subsection{System Level Testing}
+\subsubsection{Hardware}
+Both the Application and the Server were tested on three different Windows Machines: A Windows 10 PC (i5 6600, 16gb RAM), Windows 7 Laptop (i3, 4gb RAM) and on a School Machine (Pentium, 8gb RAM).
+\subsubsection{Software}
+L.A.M.P was tested with various different .net framework versions(.net 4.5-7), and with a variety of external CAD programs.
+\subsubsection{Data}
+The database was loaded with different amounts of data:
+
+\subsubsection{Response Times}
+
+\section{Evaluation of the Final Solution}
+\begin{longtable}{|p{4cm}|p{2cm}|p{8cm}|}
+	
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Needs} & \textbf{Objectives} & \textbf{Evaluation of Objective} \\ \hline
+	
+	Must store $>50$ different records & 
+	Yes &
+	The program can store well over 50 templates, but as more templates enter the database, the loading and searching/sorting times will slow slightly. 
+	\\ \hline
+	
+	Ability to store many types of users. e.g. clients, users. &
+	Yes &
+	The program currently assigns an access level to each user based on their position at the school. 0: guest, 1: student, 2: teacher, 3: admin, 4: LAMP employees/developers 
+	\\ \hline
+	
+	Store fonts and different shapes &
+	Yes &
+	The program can write and read different fonts and create different shapes in the designer.
+	\\ \hline
+	
+	A drag-and-drop interface supporting:
+	\begin{itemize}
+		\itemsep0em
+		\item text with different fonts
+		\item circles
+		\item rectangles
+		\item lines
+	\end{itemize} &
+	Yes &
+	The trophy designer can both take a trophy file and loads it into LAMP, as well as edit the design or create a new one using lines, circles and other tools. 
+	\\ \hline
+	
+	Program must indicate the material and settings to use on the laser cutter, OR setting these values automatically before a job. &
+	Partially &
+	Using the summary section of the job, the user can specify what settings will need to be applied, but this would be difficult for an average user to do as the settings are quite specific. 
+	\\ \hline
+	
+	The program must be efficient in the usage and process of its materials. For example, when engraving school trophies for Sydney Boys High School & 
+	Yes &
+	The program is optimized so that a single job will have the maximum level of efficiency by effectively grouping trophies together using a specialized algorithm, therefore minimizing waste. \newline The jobs are scanned to ensure laser cutting integrity is maintained, this is done by analysing line types and ensuring no erroneous lines or shapes are present in the file. This will increase the speed of laser cutting. \\ \hline
+	
+	The program must be optimised such at LEAST 8 trophies can be cut per hour. &
+	Yes &
+	Due to the time saving methods listed above, the trophies can be printed more efficiently, saving time and increasing cuts per hour.
+	\\ \hline
+	
+	Program must assist the user in aligning the job in the laser cutter. Previously this was done manually with callipers. &
+	Yes &
+	Since the program produces a file with multiple trophies lain out in one file, the alignment of trophies is done automatically, thus the operator of the laser cutter will only need to insert a large sheet of material, and press cut.
+	\\ \hline
+	
+	To increase efficiency of the cutter:
+	\begin{itemize}
+		\itemsep0em
+		\item Reduce Raster lines
+		\item Increase Vector Lines
+		\item No double lines
+		\item Vector-based fonts
+	\end{itemize} &
+	Partially &
+	The program filters out some duplicated lines and removes invalid lines. However, improvements can be made in order to further increase efficiency.
+	\\ \hline
+	
+	Current GUI has many issues, that must be rectified in the solution
+	\begin{itemize}
+		\itemsep0em
+		\item Hard to navigate
+		\item Limited usage
+		\item No tutorial
+		\item No colour
+		\item Some functions don’t work such as key bindings
+		\item Hard to line up
+	\end{itemize} & 
+	Yes &
+	The GUI has been made more intuitive with the inclusion of on-screen prompts and tooltips, while maintaining a clean, material look to minimize clutter.\newline The capabilities of the program have been greatly increased, with more tools and functions for the user to use. The program now includes a dedicated help document to guide the user through all aspects of the application.
+	\\ \hline
+	Ability to export/import files compatible with illustrator AND/OR AutoCAD or other popular cad programs &
+	Yes &
+	Both illustrator and AutoCAD files can be imported into the designer, or straight into the database for personal or public use.
+	\\ \hline
+	
+	Ability to attach a number of tags to each template, which can be filtered by the user
+	Sort/Search by:
+		\begin{itemize}
+		\itemsep0em
+		\item Template name
+		\item Template creator
+		\item Date created/Approved
+		\item Item ID
+		\item Template material
+	\end{itemize} & 
+	Yes &
+	When uploading a trophy to the database, or editing the database, tags can be added or removed from the database files. The tags are used by the searching and sorting function of the database, allowing users to filter out unwanted specifications such as acrylic or wood.
+	\\ \hline
+	
+	Three modes: 
+		\begin{itemize}
+		\itemsep0em
+		\item Cut trophy mode, someone manually lines blank trophies up as shown by the program, and a pattern is cut onto it
+		\item Cut Plaque mode, a sheet of material is cut using the laser cutter into smaller plaques
+		\item Net mode, a net is generated dynamically based on constraints given by the user: e.g. a box can be generated from length, height, width and whether it is closed or open
+	\end{itemize} & 
+	Yes &
+	LAMP can be used to not only create trophies and plaques, but to create any file that a user would like to laser cut.\newline
+	We have made the program more generic by not forcing the user to switch between different modes to cut different things.
+	\\ \hline
+	3 levels of access, with each level having all the permissions of the levels below 
+		\begin{itemize}
+		\itemsep0em
+		\item Student (Lowest): can submit templates to be approved then used by teachers/administrators
+		\item Teachers: can also submit jobs to administrators for approval, who run the laser cutter. Can also approve templates.
+		\item Administrators: have all permissions, can view all information and approve all jobs/templates, to be cut by the laser cutter.
+	\end{itemize} & 
+	Yes &
+The access levels have been slightly changed with an inclusion of a guest level (level 0), then all levels proceed as originally planned, with the higher levels possessing all features of the level(s) below.\newline Administrators have access to the admin home, which is used to approve or deny jobs and approve additions to the database. \\ \hline
+	A process that reads in an Illustrator file and
+		\begin{itemize}
+		\itemsep0em
+		\item Reads all linetypes in the file
+		\item Compiles linetypes in numerical data
+		\item Quantitatively assesses linetype data
+		\item Provides estimate on print time
+		\item Displays linetype data in readable format
+	\end{itemize} & 
+	No &
+	This has now been replaced with a newer method, spf files, which contain the design, as well as tags. \newline
+	Due to the validation of the files, the print time estimation supplied by the laser cutter print driver is more accurate, hence the need for developing our own print time calculator is non-existent. \\ \hline
+\end{longtable}
+
+\subsubsection{Conclusion}
+The quality of the solution could be improved by making the UI less cluttered, containing more intuitive controls and layouts, as will as more tooltips and prompts. Many quality of life improvements could also be made to the solution including:
+	
+	\begin{itemize}
+	\itemsep0em
+	\item Not resizing a form when a new function is being used and a new form is opened
+	\item Forms appearing in the same location as the previous form
+	\item More tooltips
+	\item Updated help document
+	\item Back button working with multiple screens on the same form
+\end{itemize} 
+	
+	
+	
+	
+	
+	
+	
 \end{document}
 
 
