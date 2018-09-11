@@ -18,9 +18,18 @@
 \usepackage{multirow}
 \usepackage{listings}
 \usepackage{caption}
+\usepackage{float}
 
 
 
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
 
 \setlength{\headheight}{62pt}
 
@@ -42,7 +51,6 @@
 	{\pagestyle{empty}\origdoublepage}%
 }
 
-\let\cleardoublepage\clearemptydoublepage
 
 
 \begin{document}
@@ -340,7 +348,7 @@ The program will have error-checking algorithms on .AI files, to ensure it has l
 \end{itemize}
 
 \subsection{Laser cutter machine}
-The laser cutter machine is a complex piece of hardware, capable of cutting thin material via vector lines, and engraving with both vector and raster modes available. The laser bed or cutting space is 450 x 600mm, which will limit the maximum number of trophies cut at once. It uses a 50 watt, 10|TODO|m laser, and the materials it can cut are thin woods and plastics, but it can engrave a variety of materials, including plastics, woods and glass. 
+The laser cutter machine is a complex piece of hardware, capable of cutting thin material via vector lines, and engraving with both vector and raster modes available. The laser bed or cutting space is 450 x 600mm, which will limit the maximum number of trophies cut at once. It uses a 50 watt, 10$\mu$m laser, and the materials it can cut are thin woods and plastics, but it can engrave a variety of materials, including plastics, woods and glass. 
 \begin{itemize}
 	\itemsep0em
 	\item Capabilities of the laser cutter
@@ -870,7 +878,7 @@ Graphical Editor
 & lineData & Array (Line) & 10000 & the lines that the spf file contains \\ \hline
 \end{longtable}
 \footnotetext{Length in elements}
-
+\normalsize
 
 
 \section{Algorithms}
@@ -900,8 +908,123 @@ Graphical Editor
 \lstinputlisting{pseudo.txt}
 
 \section[Screen Design Principals]{Screen Design Principals \footnote{Screen Design by Max}}
+% hewwo this is a storyboard %
+\subsection{Philosophy}
+Functionality was the main focus of this program, and thus sacrifices were made in terms of the user interface, to accommodate a high number of functions and options per screen.
+\subsubsection{Aesthetics and Clarity}
++ Ensuring information is presented in an organised and predictable manner $\dashleftarrow$ using groupings and clear alignments
++ As much content on each screen without too much clutter, organised with group boxes
++ Easy to read fonts and non-intrusive colour scheme using neutral or cool colours
++ Simple colour palettes
++ No unnecessarily colourful or large icons in menus
 
-hewwo
+\centering
+\subsection{Storyboard}
+\begin{figure}[H]
+\includegraphics[width=0.8\textwidth]{sd1.png}
+\caption{The storyboard, showing connected screens}
+\end{figure}
+
+
+\subsection{Login Screen}
+% this is the login screen
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{sd2.png}
+\caption{The Login Screen was created with simplicity in mind, and so the only things on the screen upon the start-up are the logo and the textboxes that you login with. The form uses a light grey background colour, which is consistent throughout all the forms of the program.}
+\end{figure}
+
+\subsection{Sign Up]}
+% sign up screen
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd3.png}
+	\caption{This screen contains only text boxes and labels to guide the user as to how to sign up and create an account.}
+\end{figure}
+
+\subsection{Home Screen}
+% home screen
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd4.png}
+	\caption{This screen has a toolbar which is also consistent throughout the program. It also contains links to the other forms }
+\end{figure}
+
+\subsection{Create New Design}
+% Design screen
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd5.png}
+	\caption{}
+\end{figure}
+
+\subsection{Home Screen}
+% this is the login screen
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd4.png}
+	\caption{This screen has a toolbar which is also consistent throughout the program. It also contains links to the other forms }
+\end{figure}
+
+\subsection{Create New Design}
+% Design screen
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd5.png}
+	\caption{}
+\end{figure}
+
+\subsection{Create New Job}
+% Design screen
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd6.png}
+	\caption{}
+\end{figure}
+
+\subsection{View Jobs}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd7.png}
+	\caption{}
+\end{figure}
+
+\subsection{View Designs}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd8.png}
+	\caption{}
+\end{figure}
+
+\subsection{Admin Tools}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd9.png}
+	\caption{}
+\end{figure}
+
+\subsection{Approve/Reject Templates}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sd10.png}
+	\caption{}
+\end{figure}
+
+
+\subsection{Dialogs}
+\begin{figure}[H]
+	\centering
+	\subsubsection{Help}
+	\includegraphics[width=0.5\textwidth]{dialog1.png}
+	\caption{The help dialog informs the user how to use tooltips  and provides a link to the user manual}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\subsubsection{About}
+	\includegraphics[width=0.5\textwidth]{dialog2.png}
+	\caption{The about dialog provdes information about the program along with relevant copyright and licensing terms}
+\end{figure}
+
 \end{document}
 
 
