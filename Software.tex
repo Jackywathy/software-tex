@@ -1137,10 +1137,6 @@ Invalid Username “-qeirj92-fikfl” & Invalid Password & No & Invalid Credenti
 	Email & johndoeemail & A red marker is generated to indicate an error. & Input is invalid and a visual error is generated to indicate the offending field \\ \hline
 	Email & johndoe@email & A red marker is generated to indicate an error. & Input is invalid and a visual error is generated to indicate the offending field \\ \hline
 	
-
-	
-	
-	
 \end{longtable}
 
 \subsection{System Level Testing}
@@ -1149,7 +1145,89 @@ Both the Application and the Server were tested on three different Windows Machi
 \subsubsection{Software}
 L.A.M.P was tested with various different .net framework versions(.net 4.5-7), and with a variety of external CAD programs.
 \subsubsection{Data}
-The database was loaded with different amounts of data:
+The database was loaded with different amounts of data:\\
+\textbf{Templates}
+\begin{longtable}{|p{5cm}|p{5cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Files} & \textbf{Database Size}   \\ \hline
+
+	10 templates & 6 mb  \\ \hline
+	20 templates & 9 mb  \\ \hline
+	30 templates & 10 mb  \\ \hline
+	40 templates & 12 mb  \\ \hline
+	100 templates & 18 mb  \\ \hline
+
+\end{longtable}
+Due to SQLITE's automatic compression of dxf files, aided by the similar structure of said files, we found that storing many templates in the database was not a problem
+
+\textbf{Jobs}
+
+\begin{longtable}{|p{5cm}|p{5cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Files} & \textbf{Database Size}   \\ \hline
+	
+	10 jobs & 14 mb  \\ \hline
+	20 jobs & 20 mb  \\ \hline
+	30 jobs & 35 mb  \\ \hline
+	40 jobs & 40 mb  \\ \hline
+	100 jobs & 80 mb  \\ \hline
+	
+\end{longtable}
+
+Similarly, we found that SQLITE's compression helped reduce the storage space of jobs. However, since jobs are larger files, it required more memory that with an equal number of templates.
+
+
+Despite the large amounts of data stored by LAMP, the database never grew unmanageably big, due to automatic compression. A database containing both 100 jobs and templates will require approximately 100 megabytes of storage.
+
+\subsubsection{Response Times}
+We tested response times on two different machines, a developer machine (i5, 16gb RAM), and on the school computer (pentium, 8gb RAM), to the nearest 100 milliseconds (ms).
+\begin{longtable}{|p{7cm}|p{3cm}|p{3cm}|}
+	\hline
+	\rowcolor{gray!50}
+	\textbf{Task} & \textbf{Time for Developer Machine (ms)} &  \textbf{Time for School Machine (ms)}  \\ \hline
+	Startup & 400 & 500  \\ \hline
+
+	Insert Line into Drawing & $<$ 100 & $<$ 100  \\ \hline
+	Insert Circle into Drawing & $<$ 100 & $<$ 100  \\ \hline
+	Insert Static Text into Drawing & $<$ 100 & $<$ 100  \\ \hline
+	Insert Dynamic Text into Drawing & $<$ 100 & $<$ 100  \\ \hline
+	
+	Save SPF (varies due to file size differences) & 500-1200 & 600-2000  \\ \hline
+	Save DXF (varies due to file size differences) & 200-500 & 300-700 \\ \hline
+	
+	Get Template List & 300-1800 & 300-1800  \\ \hline
+	Get Job List & 400-2000 & 800-2000  \\ \hline
+
+	Submit/Edit Template & 500-1300 & 500-1300 \\ \hline
+	Submit/Edit Job & 600-1500 & 600-1600  \\ \hline
+	
+	Delete Template & 200-400 & 200-400 \\ \hline
+	Delete Job & 200-400 & 200-400  \\ \hline
+\end{longtable}
+
+These results were collected using Passmark's AppTimer, and with visual studio's Benchmark Test Explorer. 
+There was only a small difference in response time between the school and developer machine, enough though the developer machine had almost twice the computing power. This is likely due to the bottleneck being the hard drive and network speed, since there is little heavy computation required. For tasks longer than a second, a loading screen will need to be provided in order to provide feedback for the user. 
+
+\subsection{Beta Testing}
+Our program was beta tested by two members of our software class and by Ms. Dam
+\subsubsection{Version 0.4}
+\textbf{Tester: Brian.} \\
+Brian remarked that the program’s interface did not flow correctly, often requiring the use of the X button in the window bar in order to return to a previous form. This resulted in a non-optimal user experience. One form, DESIGNER FORM was found to be almost unusable due to lack of help and the complexity of form (holding several designing tools that were non uniformly spaced), and needs to be redesigned. However, he was ultimately able to create basic templates after a short learning period using an external CAD program instead of LAMP’s inbuilt open. From this, we learnt that the user interface was lacking and needed judicious use of both color and icons to improve its usability. Beta testing also revealed several bugs that caused LAMP to crash, including an error that caused the program to crash when the back button was pressed with no previous form.
+
+
+\subsubsection{Version 0.6}
+\textbf{Tester: Vincent} \\
+This version of the program was more polished, with Vincent able to create templates from a provided dxf file, although a detailed walkthrough was required by LAMP employees. However, the program still contained several bugs that caused crashes that needed to be fixed, for example, loading an invalid or incorrect file caused the program to terminate. We also observed that the use of icons allowed Vincent to better navigate the program.
+
+\subsubsection{Version 1.0.2}
+\textbf{Tester: Ms Dam} \\
+With the program entering ‘stable’ release, Ms Dam marked our program. However, a few bugs still existed.
+An incorrect compiler resulted in integer overflow, which resulted in program termination. Ms Dam also noticed that the dynamic text interface
+was hard to use by a new user, which could be improved in on future iterations. However, the core functionality of the program: generating
+templates which could be submitted as jobs to the IA staff was successfully used, although many small patches could be applied to greatly
+improve the experience.
 
 \subsubsection{Response Times}
 
