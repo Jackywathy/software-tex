@@ -37,7 +37,7 @@
 \setlength{\headheight}{62pt}
 
 
-\lhead{L.A.M.P \\ Waxy LASER Solutions \\ Max Wharton-Jones, Shourov Quazi, Jack Jiang}
+\lhead{L.A.M.P \\ Waxy LASER Solutions \\ Jack Jiang, Max Wharton-Jones, Shourov Quazi}
 \rhead{
 \includegraphics[width=2cm]{lamp.png}
 }
@@ -71,7 +71,7 @@
 		}
 			
 			\vfill{
-			\bfseries\huge \@author \\ \normalfont\huge Max Wharton-Jones, Shourov Quazi, Jack Jiang
+			\bfseries\huge \@author \\ \normalfont\huge Jack Jiang,  Max Wharton-Jones,  Shourov Quazi
 		}
 	\vfill{
 			\huge{\@date}}
@@ -510,7 +510,7 @@ Waxy LASER Solutions retains all intellectual property rights to the software. T
 
 
 \subsection{Contract}
-\centering\Large\textbf{L.A.M.P - Terms and conditions - Waxy LASER Solutions}\\
+\begin{center}\Large\textbf{L.A.M.P - Terms and conditions - Waxy LASER Solutions}\\ \ \end{center}
 \rule{\textwidth}{2pt}
 
 \flushleft
@@ -595,19 +595,20 @@ Waxy LASER Solutions retains all intellectual property rights to the software. T
 
 \chapter{Planning and Designing}
 \section[Context Data flow diagrams]{Context Diagram and Data flow diagrams \protect\footnote{Context and DFD by Max}}
-\centering
+\begin{center}
 	\fbox{\includegraphics[width=10cm, height=5.5cm]{contextdiagram.png}}
 
-	\fbox{\includegraphics[width=\textwidth, height=7cm]{dfdlvl1.png}}
-		\fbox{\includegraphics[width=\textwidth, height=10cm]{dfdlvl21.png}}
-			\fbox{\includegraphics[width=\textwidth, height=10cm]{dfdlvl22.png}}
-
+	\fbox{\includegraphics[width=12cm, height=8cm]{dfdlvl1.png}}
+		\fbox{\includegraphics[width=10cm, height=10cm]{dfdlvl21.png}}
+			\fbox{\includegraphics[width=10cm, height=10cm]{dfdlvl22.png}}
+\end{center}
 
 \section[System Flowchart]{System Flowchart \protect\footnote{System Flowchart By Jack}}
+\begin{center}
 \fbox{\includegraphics[width=\textwidth]{systemflowchart.png}}
+\end{center}
 
 \section[IPO Chart]{IPO Chart \protect\footnote{IPO Chart by Shourov}}
-\centering
 \subsection{Select Template}
 \begin{longtable}{|p{3cm}|p{5cm}|p{4cm}|}	
 	\hline
@@ -764,20 +765,23 @@ Graphical Editor
 	& Final Job
 
 	\\ \hline
-\end{longtable}
-
+\end{longtable} 
+\pagebreak
 \section[Gantt Chart]{Gantt Chart \protect\footnote{Gantt Chart by Shourov}}
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\includegraphics[width=\textwidth]{ganttchart1.png}
 	\\
-	\includegraphics[width=\textwidth]{ganttchart2.png}
+	\vspace{1cm}
+	
+	\fbox{\includegraphics[width=\textwidth]{ganttchart2.png}}
+	\caption{Gantt chart showing expected completion dates}
 \end{figure}
 
 
 \section[Data Dictionary]{Data Dictionary \protect\footnote{Data Dictionary by Jack}}
 
 \tiny
-\begin{longtable}{|p{2cm}|p{3cm}|p{1.5cm}|p{6cm}|}	
+\begin{longtable}{|p{2cm}|p{4cm}|p{2cm}|p{6cm}|}	
 	
 	\hline
 	\rowcolor{gray!25}
@@ -851,7 +855,7 @@ Graphical Editor
 	\hline
 	\rowcolor{gray!25}
 	
-	\small \textbf{SCOPE} & \small\textbf{Identifier}  & \small\textbf{Data Type} & \small\textbf{Length \footnotemark} & \small\textbf{Description} \\ \hline
+	\small \textbf{Scope} & \small\textbf{Identifier}  & \small\textbf{Data Type} & \small\textbf{Length \footnotemark} & \small\textbf{Description} \\ \hline
 	
 	\multirow{12}{*}{\parbox{2cm}{Global}}
 	& running & boolean & 1 & whether the program is running or not\\
@@ -886,6 +890,7 @@ Graphical Editor
 \normalsize
 
 
+
 \section{Algorithms}
 
 	\lstset{ %this is the stype
@@ -911,11 +916,13 @@ Graphical Editor
 	% this is to add specific settings to an usage of this environment (for instnce, the caption and referable label)
 }
 \lstinputlisting{pseudo.txt}
+\pagebreak
 
 \section[Screen Design Principals]{Screen Design Principals \footnote{Screen Design by Max}}
 % hewwo this is a storyboard %
 
 Functionality was the main focus of this program, and thus sacrifices were made in terms of the user interface, to accommodate a high number of functions and options per screen.
+
 \subsubsection{Aesthetics and Clarity}
 \begin{itemize}
 	\itemsep0em
@@ -935,6 +942,7 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 \end{itemize}
 
 \subsubsection{Control}
+
 \begin{itemize}
 	\itemsep0em
 	\item Most functions of the program are visible on the toolbar.
@@ -943,9 +951,11 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 	\item F pattern design - elements are placed left to right, then top to bottom to maximise visibility of important elements and to highlight more useful or critical controls at the top of the screen.
 \end{itemize}
 
-\centering
+ \setlength{\belowcaptionskip}{-10pt} 
+  \setlength{\floatsep}{-10pt} 
 \subsection{Storyboard}
 \begin{figure}[H]
+	\centering
 \includegraphics[width=0.8\textwidth]{storyboard.png}
 \caption{The storyboard, showing connected screens}
 \end{figure}
@@ -1002,7 +1012,7 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{screen/submitjob.png}
-	\caption{The output and number of sheets required are shown on this screen, as long as options to export the job to the database or as a local file}
+	\caption{The output and number of sheets required are shown on this screen, as well as options to export the job to the database or as a local file}
 \end{figure}
 
 \subsection{View Orders}
@@ -1019,6 +1029,12 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 	\caption{This is the home screen for admin tools}
 \end{figure}
 
+\subsection{Admin Toolbar}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{screen/admintoolbar.png}
+	\caption{This holds all the buttons for navigation to other admin forms}
+\end{figure}
 
 \subsection{Approve Template}
 \begin{figure}[H]
@@ -1026,7 +1042,6 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 	\includegraphics[width=0.7\textwidth]{screen/approvetemplate.png}
 	\caption{This form allows admins to approve templates}
 \end{figure}
-
 
 
 \subsection{Approve Job}
@@ -1047,31 +1062,39 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 
 
 \subsection{Dialogs}
+
+\subsubsection{Help}
 \begin{figure}[H]
 	\centering
-	\subsubsection{Help}
-	\includegraphics[width=0.5\textwidth]{screen/help.png}
-	\caption{The help dialog informs the user how to use tooltips  and provides a link to the user manual}
+	
+	\includegraphics[width=0.7\textwidth]{screen/help.png}
+	\caption{The help dialog informs the user how to use LAMP and provides a link to the user manual}
 \end{figure}
+
+	\subsubsection{About}
 \begin{figure}[H]
 	\centering
-	\subsubsection{About}
-	\includegraphics[width=0.5\textwidth]{screen/about.png}
+
+	\includegraphics[width=0.7\textwidth]{screen/about.png}
 	\caption{The about dialog provides information about the program along with relevant copyright and licensing terms}
 \end{figure}
 
+\subsubsection{Logout}
 \begin{figure}[H]
 	\centering
-	\subsubsection{Logout}
-	\includegraphics[width=0.5\textwidth]{screen/logout.png}
+	
+	\includegraphics[width=0.7\textwidth]{screen/logout.png}
 	\caption{This logout box provides feedback to the user when the logout button is pressed}
 \end{figure}
 
 
 
+
+
 \chapter{Testing and Evaluating the Solution}
 \section[Test Data]{Test Data \protect\footnote{Test Data by Max}}
-\subsection{Login}
+\subsection{Boundary Testing}
+\subsubsection{Login}
 
 \begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
 	\hline
@@ -1091,7 +1114,7 @@ Invalid Username “-qeirj92-fikfl” & Invalid Password & No & Invalid Credenti
 	
 \end{longtable}
 
-\subsection{View Template / Add Template}
+\subsubsection{View Template / Add Template}
 \begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
 	\hline
 	\rowcolor{gray!50}
@@ -1107,7 +1130,7 @@ Invalid Username “-qeirj92-fikfl” & Invalid Password & No & Invalid Credenti
 \end{longtable}
 
 
-\subsection{View Template / Add Tags  AND NewTemplate / Add Tags}
+\subsubsection{View Template / Add Tags  AND NewTemplate / Add Tags}
 \begin{longtable}{|p{3cm}|p{6cm}|p{6cm}|}
 	\hline
 	\rowcolor{gray!50}
@@ -1117,8 +1140,8 @@ Invalid Username “-qeirj92-fikfl” & Invalid Password & No & Invalid Credenti
 	
 	"" & Tag is not added to the template and an error message is supplied & Tag is invalid and hence will not be added to the template \\ \hline
 \end{longtable}
-
-\subsection{New Order}
+\pagebreak
+\subsubsection{New Order}
 \begin{longtable}{|p{3cm}|p{3cm}|p{4.5cm}|p{4.5cm}|}
 	\hline
 	\rowcolor{gray!50}
@@ -1130,7 +1153,7 @@ Invalid Username “-qeirj92-fikfl” & Invalid Password & No & Invalid Credenti
 	
 \end{longtable}
 
-\subsection{New Job}
+\subsubsection{New Job}
 \begin{longtable}{|p{3cm}|p{3cm}|p{4.5cm}|p{4.5cm}|}
 	\hline
 	\rowcolor{gray!50}
@@ -1144,7 +1167,7 @@ Invalid Username “-qeirj92-fikfl” & Invalid Password & No & Invalid Credenti
 	
 \end{longtable}
 
-\subsection{New Job Boundaries (Optional)}
+\subsubsection{New Job Boundaries (Optional)}
 \begin{longtable}{|p{3cm}|p{3cm}|p{4.5cm}|p{4.5cm}|}
 	\hline
 	\rowcolor{gray!50}
@@ -1154,7 +1177,7 @@ Invalid Username “-qeirj92-fikfl” & Invalid Password & No & Invalid Credenti
 	
 \end{longtable}
 
-\subsection{Add New User / Edit User}
+\subsubsection{Add New User / Edit User}
 \begin{longtable}{|p{3cm}|p{3cm}|p{4.5cm}|p{4.5cm}|}
 	\hline
 	\rowcolor{gray!50}
@@ -1178,9 +1201,14 @@ Invalid Username “-qeirj92-fikfl” & Invalid Password & No & Invalid Credenti
 Both the Application and the Server were tested on three different Windows Machines: A Windows 10 PC (i5 6600, 16gb RAM), Windows 7 Laptop (i3, 4gb RAM) and on a School Machine (Pentium, 8gb RAM).
 \subsubsection{Software}
 L.A.M.P was tested with various different .net framework versions(.net 4.5-7), and with a variety of external CAD programs.
-\subsubsection{Data}
-The database was loaded with different amounts of data:\\
-\textbf{Templates}
+\subsection{Live Data}
+LAMP was tested with a variety of templates, some of which simulated real test data through dxf files that were then used to cut a trophy on the laser cutter. 
+\subsection{Volume Testing \& Large File sizes}
+A template containing the maximum amount of images (3), along with a long descriptions was found to be up to 5mb big. A Job containing the maximum amount of data was found to be approximately 20 mb. LAMP was capable of manipulating both files, albeit with longer save and load times .
+
+The database was also loaded with different amounts of data to test the size of the database under heavy use:
+\pagebreak
+\subsubsection{Templates}
 \begin{longtable}{|p{5cm}|p{5cm}|}
 	\hline
 	\rowcolor{gray!50}
@@ -1195,7 +1223,7 @@ The database was loaded with different amounts of data:\\
 \end{longtable}
 Due to SQLITE's automatic compression of dxf files, aided by the similar structure of said files, we found that storing many templates in the database was not a problem
 
-\textbf{Jobs}
+\subsection{Jobs}
 
 \begin{longtable}{|p{5cm}|p{5cm}|}
 	\hline
@@ -1216,7 +1244,7 @@ Similarly, we found that SQLITE's compression helped reduce the storage space of
 Despite the large amounts of data stored by LAMP, the database never grew unmanageably big, due to automatic compression. A database containing both 100 jobs and templates will require approximately 100 megabytes of storage.
 
 \subsubsection{Response Times}
-We tested response times on two different machines, a developer machine (i5, 16gb RAM), and on the school computer (pentium, 8gb RAM), to the nearest 100 milliseconds (ms).
+We tested response times on two different machines, a developer machine (i5, 16gb RAM), and on the school computer (Pentium, 8gb RAM), to the nearest 100 milliseconds (ms).
 \begin{longtable}{|p{7cm}|p{3cm}|p{3cm}|}
 	\hline
 	\rowcolor{gray!50}
@@ -1294,11 +1322,13 @@ improve the experience.
 		\item rectangles
 		\item lines
 	\end{itemize} &
-	Yes &
+	Partially &
 	The trophy designer can both take a trophy file and loads it into LAMP, as well as edit the design or create a new one using lines, circles and other tools. 
+	\newline
+	While the template editor is functional, it is very limited due to difficulty in manipulating dxf files. Lines do not snap and is for the most part impractical regarding creating a new template, however works nicely for text addition.
 	\\ \hline
 	
-	Program must indicate the material and settings to use on the laser cutter, OR setting these values automatically before a job. &
+	Program must indicate the material and settings to use on the laser cutter OR setting these values automatically before a job. &
 	Partially &
 	Using the summary section of the job, the user can specify what settings will need to be applied, but this would be difficult for an average user to do as the settings are quite specific. 
 	\\ \hline
@@ -1395,7 +1425,7 @@ The access levels have been slightly changed with an inclusion of a guest level 
 	Due to the validation of the files, the print time estimation supplied by the laser cutter print driver is more accurate, hence the need for developing our own print time calculator is non-existent. \\ \hline
 \end{longtable}
 
-\subsubsection{Conclusion}
+
 The quality of the solution could be improved by making the UI less cluttered, containing more intuitive controls and layouts, as will as more tooltips and prompts. Many quality of life improvements could also be made to the solution including:
 	
 	\begin{itemize}
@@ -1405,6 +1435,7 @@ The quality of the solution could be improved by making the UI less cluttered, c
 	\item More tooltips
 	\item Updated help document
 	\item Back button working with multiple screens on the same form
+	\item more up to date help document, with FAQ and more tasks covered
 \end{itemize} 
 	
 	
