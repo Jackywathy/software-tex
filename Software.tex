@@ -19,6 +19,7 @@
 \usepackage{listings}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{subcaption}
 
 
 
@@ -961,21 +962,26 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 \end{figure}
 
 
-\subsection{Login Screen}
-% this is the login screen
+
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{screen/login.png}
-\caption{The Login Screen was created with simplicity in mind, and so the only things on the screen upon the start-up are the logo and the textboxes that you login with. The form uses a light grey background colour, which is consistent throughout all the forms of the program.}
+	\begin{subfigure}[t]{0.5\textwidth}
+		\subsection{Login Screen}
+		\centering
+		\includegraphics[width=\textwidth]{screen/login.png}
+		\caption{The Login Screen was created with simplicity in mind, and so the only things on the screen upon the start-up are the logo and the textboxes that you login with. The form uses a light grey background colour, which is consistent throughout all the forms of the program.}
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.5\textwidth}
+		\subsection{Sign Up Screen}
+	\centering
+	\includegraphics[width=\textwidth]{screen/signup.png}
+	\caption{This screen contains only text boxes and labels to guide the user as to how to sign up and create an account.}
+	\end{subfigure}
 \end{figure}
 
-\subsection{Sign Up}
-% sign up screen
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{screen/signup.png}
-	\caption{This screen contains only text boxes and labels to guide the user as to how to sign up and create an account.}
-\end{figure}
+
+
+
 
 \subsection{Home Screen}
 % home screen
@@ -1001,19 +1007,31 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 	\caption{This screen allows users to search and sort the database for templates}
 \end{figure}
 
-\subsection{Create Job (1/2)}
+
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{screen/createjob.png}
-	\caption{Once a template is selected, a user can choose the number of templates required. The grid allows easy manipulation of text that will be placed on the template in the next step}
+	\begin{subfigure}[t]{0.5\textwidth}
+	\subsection{Create Job (1/2)}
+
+		\centering
+		\includegraphics[width=\textwidth]{screen/createjob.png}
+		\caption{Once a template is selected, a user can choose the number of templates required. The grid allows easy manipulation of text that will be placed on the template in the next step}
+
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.5\textwidth}
+		\subsection{Create Job (2/2)}
+
+			\centering
+			\includegraphics[width=\textwidth]{screen/submitjob.png}
+			\caption{The output and number of sheets required are shown on this screen, as well as options to export the job to the database or as a local file}
+	\end{subfigure}
 \end{figure}
 
-\subsection{Create Job (2/2)}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{screen/submitjob.png}
-	\caption{The output and number of sheets required are shown on this screen, as well as options to export the job to the database or as a local file}
-\end{figure}
+
+
+
+
+
 
 \subsection{View Orders}
 \begin{figure}[H]
@@ -1022,34 +1040,54 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 	\caption{Allows user to view the currently available orders}
 \end{figure}
 
-\subsection{Admin Home}
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{screen/adminhome.png}
-	\caption{This is the home screen for admin tools}
+	\begin{subfigure}[t]{0.5\textwidth}
+	\subsection{Admin Home}
+		\centering
+		\includegraphics[width=\textwidth]{screen/adminhome.png}
+		\caption{This is the home screen for admin tools}
+
+		
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.5\textwidth}
+	\subsection{Admin Toolbar}
+
+		\centering
+		\includegraphics[width=\textwidth]{screen/admintoolbar.png}
+		\caption{This holds all the buttons for navigation to other admin forms}
+
+	\end{subfigure}
 \end{figure}
 
-\subsection{Admin Toolbar}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{screen/admintoolbar.png}
-	\caption{This holds all the buttons for navigation to other admin forms}
-\end{figure}
-
-\subsection{Approve Template}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{screen/approvetemplate.png}
-	\caption{This form allows admins to approve templates}
-\end{figure}
 
 
-\subsection{Approve Job}
+
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{screen/approvejobs.png}
-	\caption{This form allows admins to approve and print jobs}
+	\begin{subfigure}[t]{0.5\textwidth}
+		\subsection{Approve Template}
+
+			\centering
+			\includegraphics[width=\textwidth]{screen/approvetemplate.png}
+			\caption{This form allows admins to approve templates}
+		
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.5\textwidth}
+		\subsection{Approve Job}
+
+			\centering
+			\includegraphics[width=\textwidth]{screen/approvejobs.png}
+			\caption{This form allows admins to approve and print jobs}
+
+		
+	\end{subfigure}
 \end{figure}
+
+
+
+
+
 
 \subsection{Manage Users}
 \begin{figure}[H]
@@ -1062,29 +1100,33 @@ Functionality was the main focus of this program, and thus sacrifices were made 
 
 
 \subsection{Dialogs}
-
+\begin{figure}[H]
+	\begin{subfigure}[t]{0.3\textwidth}
 \subsubsection{Help}
-\begin{figure}[H]
+
 	\centering
 	
-	\includegraphics[width=0.7\textwidth]{screen/help.png}
+	\includegraphics[width=\textwidth]{screen/help.png}
 	\caption{The help dialog informs the user how to use LAMP and provides a link to the user manual}
-\end{figure}
-
+	\end{subfigure}
+~
+\begin{subfigure}[t]{0.3\textwidth}
 	\subsubsection{About}
-\begin{figure}[H]
+
 	\centering
 
-	\includegraphics[width=0.7\textwidth]{screen/about.png}
+	\includegraphics[width=\textwidth]{screen/about.png}
 	\caption{The about dialog provides information about the program along with relevant copyright and licensing terms}
-\end{figure}
 
-\subsubsection{Logout}
-\begin{figure}[H]
+\end{subfigure}
+~
+\begin{subfigure}[t]{0.3\textwidth}
+	\subsection{Logout}
 	\centering
 	
-	\includegraphics[width=0.7\textwidth]{screen/logout.png}
+	\includegraphics[width=\textwidth]{screen/logout.png}
 	\caption{This logout box provides feedback to the user when the logout button is pressed}
+\end{subfigure}
 \end{figure}
 
 
